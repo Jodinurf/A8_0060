@@ -6,6 +6,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.jodifrkh.asramaapp.AsramaApplication
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeBgnViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeKmrViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeMhsViewModel
 
 object PenyediaViewModel {
@@ -15,6 +16,9 @@ object PenyediaViewModel {
         }
         initializer {
             HomeBgnViewModel(AsramaApplication().container.bangunanRepository)
+        }
+        initializer {
+            HomeKmrViewModel(AsramaApplication().container.kamarRepository)
         }
     }
 }
