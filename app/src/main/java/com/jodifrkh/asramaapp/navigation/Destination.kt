@@ -7,10 +7,15 @@ interface NavigateDestination {
 
 object DestinasiHomeMhs : NavigateDestination {
     override val route = "homeMhs"
-    override val titleRes: String = "Home Page Bangunan"
+    override val titleRes: String = "Homepage Bangunan"
 }
 
 object DestinasiHomeBgn : NavigateDestination {
     override val route = "homeBgn"
-    override val titleRes: String = "Home Page Bangunan"
+    override val titleRes: String = "Homepage Bangunan"
+}
+
+object DestinasiHomeKmr : NavigateDestination {
+    override val route = "homeKmr"
+    override val titleRes = "Homepage Kamar"
 }
