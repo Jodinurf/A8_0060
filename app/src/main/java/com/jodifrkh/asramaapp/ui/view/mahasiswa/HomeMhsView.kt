@@ -44,26 +44,26 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jodifrkh.asramaapp.R
 import com.jodifrkh.asramaapp.data.model.Mahasiswa
-import com.jodifrkh.asramaapp.navigation.DestinasiHome
+import com.jodifrkh.asramaapp.navigation.DestinasiHomeMhs
 import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeMhsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeUiState
-import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeViewModel
 import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(
+fun HomeMhsScreen(
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailClick: (String) -> Unit = {},
-    viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
+    viewModel: HomeMhsViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold (
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             CustomTopAppBar(
-                title = DestinasiHome.titleRes,
+                title = DestinasiHomeMhs.titleRes,
                 canNavigateBack = false,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {

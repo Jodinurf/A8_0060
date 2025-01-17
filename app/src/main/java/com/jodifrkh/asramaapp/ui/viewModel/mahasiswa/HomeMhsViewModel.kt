@@ -17,7 +17,7 @@ sealed class HomeUiState{
     object Loading: HomeUiState()
 }
 
-class HomeViewModel (private val mhs: MahasiswaRepository): ViewModel(){
+class HomeMhsViewModel (private val mhs: MahasiswaRepository): ViewModel(){
     var mhsUIState: HomeUiState by mutableStateOf(HomeUiState.Loading)
         private set
     init {

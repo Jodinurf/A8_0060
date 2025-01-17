@@ -22,7 +22,7 @@ interface MahasiswaService {
     suspend fun getMahasiswa(): MahasiswaResponse
 
     @GET("mahasiswa/{idMhs}")
-    suspend fun getMahasiswaByNim(@Path("idMhs")idMhs:Int): MahasiswaDetailResponse
+    suspend fun getMahasiswaById(@Path("idMhs")idMhs:Int): MahasiswaDetailResponse
 
     @POST("mahasiswa/store")
     suspend fun insertMahasiswa(@Body mahasiswa: Mahasiswa)
