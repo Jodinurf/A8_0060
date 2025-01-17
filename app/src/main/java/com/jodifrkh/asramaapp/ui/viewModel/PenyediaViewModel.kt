@@ -5,12 +5,16 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.jodifrkh.asramaapp.AsramaApplication
-import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeBgnViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeMhsViewModel
 
 object PenyediaViewModel {
     val Factory = viewModelFactory {
         initializer {
-            HomeViewModel(AsramaApplication().container.mahasiswaRepository)
+            HomeMhsViewModel(AsramaApplication().container.mahasiswaRepository)
+        }
+        initializer {
+            HomeBgnViewModel(AsramaApplication().container.bangunanRepository)
         }
     }
 }
