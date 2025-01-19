@@ -19,3 +19,8 @@ object DestinasiHomeKmr : NavigateDestination {
     override val route = "homeKmr"
     override val titleRes = "Homepage Kamar"
 }
+
+object DestinasiHomePS : NavigateDestination {
+    override val route = "homePS"
+    override val titleRes = "Homepage Pembayaran"
+}
