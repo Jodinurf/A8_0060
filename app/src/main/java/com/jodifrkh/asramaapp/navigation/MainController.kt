@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.jodifrkh.asramaapp.ui.view.bangunan.HomeBgnScreen
 import com.jodifrkh.asramaapp.ui.view.kamar.HomeKmrScreen
 import com.jodifrkh.asramaapp.ui.view.mahasiswa.HomeMhsScreen
+import com.jodifrkh.asramaapp.ui.view.pembayaranSewa.HomePsScreen
 
 @Composable
 fun MainControllerPage(
@@ -15,7 +16,7 @@ fun MainControllerPage(
 ) {
     NavHost(
         navController = navController,
-        startDestination = DestinasiHomeKmr.route
+        startDestination = DestinasiHomePS.route
     ) {
         composable(DestinasiHomeMhs.route) {
             HomeMhsScreen(
@@ -35,6 +36,13 @@ fun MainControllerPage(
             HomeKmrScreen(
                 navigateToItemEntry = {},
                 onDetailClick = {},
+            )
+        }
+
+        composable(DestinasiHomePS.route) {
+            HomePsScreen(
+                navigateToItemEntry = {},
+                onDetailClick = {}
             )
         }
     }
