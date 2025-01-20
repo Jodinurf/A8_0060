@@ -21,6 +21,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeBgnViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeUiState
+import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeKmrViewModel
 
 object ObjectMultipleChoice {
     @Composable
@@ -32,6 +33,20 @@ object ObjectMultipleChoice {
         return if (dataBangunan is HomeUiState.Success) {
             val bangunanList = (dataBangunan as HomeUiState.Success).bangunan
             bangunanList.map { it.namaBgn to it.idBgn }
+        } else {
+            emptyList()
+        }
+    }
+
+    @Composable
+    fun optionsDropDownKamar(
+        kamarHomeViewModel : HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory)
+    ) : List<Pair<String, Int>> {
+        val dataKamar by kamarHomeViewModel.kmrUIState.collectAsState()
+
+        return if (dataKamar is com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState.Success) {
+            val kamarList = (dataKamar as com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState.Success).kamar
+            kamarList.map { it.nomorKmr to it.idKmr }
         } else {
             emptyList()
         }
