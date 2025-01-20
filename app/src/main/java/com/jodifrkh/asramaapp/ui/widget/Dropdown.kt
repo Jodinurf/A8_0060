@@ -18,6 +18,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import com.jodifrkh.asramaapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -75,6 +77,70 @@ fun DropdownBangunan(
                         onClick = {
                             expanded = false
                             onSelectedNameChanged(namaBgn)
+                        }
+                    )
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DropdownKamar(
+    selectedKamar: String,
+    onSelectedKamarChanged: (String) -> Unit,
+    kamarOptions: List<Pair<String, Int>>,
+    label: String,
+    modifier: Modifier = Modifier,
+    isReadOnly: Boolean = false
+) {
+    var expanded by remember { mutableStateOf(false) }
+
+    ExposedDropdownMenuBox(
+        expanded = expanded && !isReadOnly,
+        onExpandedChange = { if (!isReadOnly) expanded = !expanded },
+        modifier = modifier
+    ) {
+        OutlinedTextField(
+            value = selectedKamar,
+            onValueChange = {},
+            label = { Text(text = label) },
+            trailingIcon = {
+                if (!isReadOnly) {
+                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                }
+            },
+            leadingIcon = {
+                Icon(
+                    painter = painterResource(R.drawable.ic_door),
+                    contentDescription = "Door Icon",
+                    tint = Color(0xFFFF6F61),
+                )
+            },
+            placeholder = { Text("Pilih Kamar") },
+            readOnly = true,
+            enabled = !isReadOnly,
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = if (!isReadOnly) Color(0xFF1DDBAF) else Color.Gray,
+                unfocusedBorderColor = Color(0xFFB0BEC5),
+                errorBorderColor = Color.Red
+            ),
+            modifier = Modifier
+                .menuAnchor()
+                .fillMaxWidth()
+        )
+        if (!isReadOnly) {
+            ExposedDropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false },
+            ) {
+                kamarOptions.forEach { (nomorKamar, idKmr) ->
+                    DropdownMenuItem(
+                        text = { Text(text = "Kamar Nomor : ${nomorKamar}") },
+                        onClick = {
+                            expanded = false
+                            onSelectedKamarChanged(nomorKamar)
                         }
                     )
                 }
