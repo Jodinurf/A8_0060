@@ -48,3 +48,22 @@ object DestinasiUpdateBgn : NavigateDestination {
     const val idBgn = "idBgn"
     val routesWithArg = "$route/{$idBgn}"
 }
+
+object DestinasiInsertKmr : NavigateDestination {
+    override val route = "insertKmr"
+    override val titleRes = "Tambah Data Kamar"
+}
+
+object DestinasiDetailKmr : NavigateDestination {
+    override val route = "detailKmr"
+    override val titleRes = "Data Kamar"
+    const val idKmr = "idKmr"
+    val routesWithArg = "$route/{$idKmr}"
+}
+
+object DestinasiUpdateKmr : NavigateDestination {
+    override val route = "updateKmr"
+    override val titleRes = "Update Kamar"
+    const val idKmr = "idKmr"
+    val routesWithArg = "$route/{$idKmr}"
+}
