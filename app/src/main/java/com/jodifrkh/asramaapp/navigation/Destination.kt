@@ -5,36 +5,22 @@ interface NavigateDestination {
     val titleRes: String
 }
 
-// Homepage
-
-object DestinasiHomeMhs : NavigateDestination {
-    override val route = "homeMhs"
-    override val titleRes: String = "Homepage Mahasiswa"
+object DestinasiHomepage : NavigateDestination {
+    override val route = "homepage"
+    override val titleRes = "Homepage"
 }
 
+// ------------------Bangunan------------------- //
 object DestinasiHomeBgn : NavigateDestination {
     override val route = "homeBgn"
-    override val titleRes: String = "Homepage Bangunan"
+    override val titleRes: String = "Daftar Bangunan"
 }
-
-object DestinasiHomeKmr : NavigateDestination {
-    override val route = "homeKmr"
-    override val titleRes = "Homepage Kamar"
-}
-
-object DestinasiHomePS : NavigateDestination {
-    override val route = "homePS"
-    override val titleRes = "Homepage Pembayaran"
-}
-
-// Insert page
 
 object DestinasiInsertBgn : NavigateDestination {
     override val route = "insertBgn"
     override val titleRes = "Tambah Data Bangunan"
 }
 
-// Detail Page
 object DestinasiDetailBgn : NavigateDestination {
     override val route = "detailBgn"
     override val titleRes = "Data Bangunan"
@@ -47,6 +33,12 @@ object DestinasiUpdateBgn : NavigateDestination {
     override val titleRes = "Update Bangunan"
     const val idBgn = "idBgn"
     val routesWithArg = "$route/{$idBgn}"
+}
+
+// ------------------Kamar------------------- //
+object DestinasiHomeKmr : NavigateDestination {
+    override val route = "homeKmr"
+    override val titleRes = "Daftar Kamar"
 }
 
 object DestinasiInsertKmr : NavigateDestination {
@@ -66,4 +58,34 @@ object DestinasiUpdateKmr : NavigateDestination {
     override val titleRes = "Update Kamar"
     const val idKmr = "idKmr"
     val routesWithArg = "$route/{$idKmr}"
+}
+
+// ------------------Mahasiswa------------------- //
+object DestinasiHomeMhs : NavigateDestination {
+    override val route = "homeMhs"
+    override val titleRes: String = "Daftar Mahasiswa"
+}
+object DestinasiInsertMhs : NavigateDestination {
+    override val route = "insertMhs"
+    override val titleRes = "Tambah Data Mahasiswa"
+}
+
+object DestinasiDetailMhs : NavigateDestination {
+    override val route = "detailMhs"
+    override val titleRes = "Data Mahasiswa"
+    const val idMhs = "idMhs"
+    val routesWithArg = "$route/{$idMhs}"
+}
+
+object DestinasiUpdateMhs : NavigateDestination {
+    override val route = "updateMhs"
+    override val titleRes = "Update Mahasiswa"
+    const val idMhs = "idMhs"
+    val routesWithArg = "$route/{$idMhs}"
+}
+
+// ------------------Transaksi------------------- //
+object DestinasiHomePS : NavigateDestination {
+    override val route = "homePS"
+    override val titleRes = "Daftar Pembayaran"
 }
