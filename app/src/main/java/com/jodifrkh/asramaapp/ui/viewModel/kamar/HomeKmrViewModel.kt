@@ -1,12 +1,11 @@
 package com.jodifrkh.asramaapp.ui.viewModel.kamar
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jodifrkh.asramaapp.data.model.Kamar
 import com.jodifrkh.asramaapp.data.repository.KamarRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import okio.IOException
 import retrofit2.HttpException
@@ -18,16 +17,20 @@ sealed class HomeUiState{
 }
 
 class HomeKmrViewModel (private val kmr: KamarRepository): ViewModel(){
-    var kmrUIState: HomeUiState by mutableStateOf(HomeUiState.Loading)
-        private set
+
+    private val _kmrUIState = MutableStateFlow<HomeUiState>(HomeUiState.Loading)
+
+    val kmrUIState: StateFlow<HomeUiState> get() = _kmrUIState
+
     init {
         getKmr()
     }
     fun getKmr(){
         viewModelScope.launch {
-            kmrUIState = HomeUiState.Loading
-            kmrUIState = try {
-                HomeUiState.Success(kmr.getKamar().data)
+            _kmrUIState.value = HomeUiState.Loading
+            _kmrUIState.value = try {
+                val kamarList = kmr.getKamar().data
+                HomeUiState.Success(kamarList)
             } catch (e: IOException){
                 HomeUiState.Error
             } catch (e: HttpException){

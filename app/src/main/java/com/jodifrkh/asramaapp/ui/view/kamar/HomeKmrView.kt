@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -20,8 +19,6 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
@@ -35,6 +32,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -43,7 +41,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -56,6 +53,9 @@ import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeBgnViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeKmrViewModel
 import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import com.jodifrkh.asramaapp.ui.widget.OnError
+import com.jodifrkh.asramaapp.ui.widget.OnLoading
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun HomeKmrScreen(
@@ -112,17 +112,17 @@ fun HomeKmrScreen(
 
 @Composable
 fun HomeStatus(
-    homeUiState: HomeUiState,
+    homeUiState: StateFlow<HomeUiState>,
     retryAction: () -> Unit,
     bangunanList: List<Pair<String, Int>>,
     modifier: Modifier = Modifier,
     onDeleteClick: (Kamar) -> Unit = {},
     onDetailClick: (String) -> Unit
 ) {
-    when (homeUiState) {
+    when (val state = homeUiState.collectAsState().value) {
         is HomeUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
         is HomeUiState.Success -> {
-            if (homeUiState.kamar.isEmpty()) {
+            if (state.kamar.isEmpty()) {
                 Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(
                         text = "Tidak Ada Data Kamar",
@@ -133,7 +133,7 @@ fun HomeStatus(
                 }
             } else {
                 KmrLayout(
-                    kamar = homeUiState.kamar,
+                    kamar = state.kamar,
                     bangunanList = bangunanList,
                     modifier = modifier.fillMaxWidth(),
                     onClick = onDetailClick,
@@ -146,52 +146,6 @@ fun HomeStatus(
 }
 
 
-@Composable
-fun OnLoading(modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            modifier = Modifier.size(150.dp),
-            painter = painterResource(R.drawable.loading_img),
-            contentDescription = stringResource(R.string.loading)
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = "Memuat data...",
-            style = MaterialTheme.typography.bodyMedium,
-            color = Color(0xFF1DDBAF)
-        )
-    }
-}
-
-@Composable
-fun OnError(retryAction: () -> Unit, modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Icon(
-            imageVector = Icons.Default.Warning,
-            contentDescription = null,
-            tint = Color(0xFFFF6F61),
-            modifier = Modifier.size(48.dp)
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = stringResource(R.string.loading_failed),
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onError
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = retryAction, colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)) {
-            Text(stringResource(R.string.retry))
-        }
-    }
-}
 
 @Composable
 fun KmrLayout(
