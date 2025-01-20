@@ -14,22 +14,17 @@ import com.jodifrkh.asramaapp.ui.viewModel.kamar.DetailKmrViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeKmrViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.InsertKmrViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.UpdateKmrViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.DetailMhsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeMhsViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.InsertMhsViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.UpdateMhsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.HomePSViewModel
 
 object PenyediaViewModel {
     val Factory = viewModelFactory {
-        initializer {
-            HomeMhsViewModel(AsramaApplication().container.mahasiswaRepository)
-        }
+        // ------------------Bangunan------------------- //
         initializer {
             HomeBgnViewModel(AsramaApplication().container.bangunanRepository)
-        }
-        initializer {
-            HomeKmrViewModel(AsramaApplication().container.kamarRepository)
-        }
-        initializer {
-            HomePSViewModel(AsramaApplication().container.pembayaranRepository)
         }
         initializer {
             InsertBgnViewModel(AsramaApplication().container.bangunanRepository)
@@ -46,6 +41,10 @@ object PenyediaViewModel {
                 AsramaApplication().container.bangunanRepository
             )
         }
+        // ------------------Kamar------------------- //
+        initializer {
+            HomeKmrViewModel(AsramaApplication().container.kamarRepository)
+        }
         initializer {
             InsertKmrViewModel(AsramaApplication().container.kamarRepository)
         }
@@ -60,6 +59,30 @@ object PenyediaViewModel {
                 createSavedStateHandle(),
                 AsramaApplication().container.kamarRepository
             )
+        }
+        // ------------------Mahasiswa------------------- //
+        initializer {
+            HomeMhsViewModel(AsramaApplication().container.mahasiswaRepository)
+        }
+        initializer {
+            InsertMhsViewModel(AsramaApplication().container.mahasiswaRepository)
+        }
+        initializer {
+            DetailMhsViewModel(
+                createSavedStateHandle(),
+                AsramaApplication().container.mahasiswaRepository
+            )
+        }
+        initializer {
+            UpdateMhsViewModel(
+                createSavedStateHandle(),
+                AsramaApplication().container.mahasiswaRepository
+            )
+        }
+
+        // ------------------Pembayaran Sewa------------------- //
+        initializer {
+            HomePSViewModel(AsramaApplication().container.pembayaranRepository)
         }
     }
 }
