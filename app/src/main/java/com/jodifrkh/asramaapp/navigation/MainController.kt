@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.jodifrkh.asramaapp.ui.view.Homepage
 import com.jodifrkh.asramaapp.ui.view.bangunan.DetailBgnScreen
 import com.jodifrkh.asramaapp.ui.view.bangunan.HomeBgnScreen
 import com.jodifrkh.asramaapp.ui.view.bangunan.InsertBgnView
@@ -15,7 +16,10 @@ import com.jodifrkh.asramaapp.ui.view.kamar.DetailKmrScreen
 import com.jodifrkh.asramaapp.ui.view.kamar.HomeKmrScreen
 import com.jodifrkh.asramaapp.ui.view.kamar.InsertKmrView
 import com.jodifrkh.asramaapp.ui.view.kamar.UpdateKmrScreen
+import com.jodifrkh.asramaapp.ui.view.mahasiswa.DetailMhsScreen
 import com.jodifrkh.asramaapp.ui.view.mahasiswa.HomeMhsScreen
+import com.jodifrkh.asramaapp.ui.view.mahasiswa.InsertMhsView
+import com.jodifrkh.asramaapp.ui.view.mahasiswa.UpdateMhsScreen
 import com.jodifrkh.asramaapp.ui.view.pembayaranSewa.HomePsScreen
 
 @Composable
@@ -24,15 +28,24 @@ fun MainControllerPage(
 ) {
     NavHost(
         navController = navController,
-        startDestination = DestinasiHomeKmr.route
+        startDestination = DestinasiHomepage.route
     ) {
-        composable(DestinasiHomeMhs.route) {
-            HomeMhsScreen(
-                navigateToItemEntry = {},
-                onDetailClick = {}
+
+        composable(DestinasiHomepage.route) {
+            Homepage(
+                onItemClick = { item ->
+                    when (item) {
+                        "Bangunan" -> navController.navigate(DestinasiHomeBgn.route)
+                        "Kamar" -> navController.navigate(DestinasiHomeKmr.route)
+                        "Mahasiswa" -> navController.navigate(DestinasiHomeMhs.route)
+                        "Pembayaran Sewa" -> navController.navigate(DestinasiHomePS.route)
+                        else -> {}
+                    }
+                }
             )
         }
 
+        // ------------------Bangunan------------------- //
         composable(DestinasiHomeBgn.route) {
             HomeBgnScreen(
                 navigateToItemEntry = {
@@ -42,25 +55,6 @@ fun MainControllerPage(
                     navController.navigate("${DestinasiDetailBgn.route}/$idBgn")
                 },
                 onBackClick = {navController.popBackStack()}
-            )
-        }
-
-        composable(DestinasiHomeKmr.route) {
-            HomeKmrScreen(
-                navigateToItemEntry = {
-                    navController.navigate(DestinasiInsertKmr.route)
-                },
-                onDetailClick = { idKmr ->
-                    navController.navigate("${DestinasiDetailKmr.route}/$idKmr")
-                },
-                onBackClick = {navController.popBackStack()}
-            )
-        }
-
-        composable(DestinasiHomePS.route) {
-            HomePsScreen(
-                navigateToItemEntry = {},
-                onDetailClick = {}
             )
         }
 
@@ -79,7 +73,7 @@ fun MainControllerPage(
                 }
             )
         ) {
-           val idBgn = it.arguments?.getString(DestinasiDetailBgn.idBgn)
+            val idBgn = it.arguments?.getString(DestinasiDetailBgn.idBgn)
             idBgn?.let { idBgn ->
                 DetailBgnScreen(
                     onClickBack = {
@@ -107,6 +101,19 @@ fun MainControllerPage(
             UpdateBgnScreen(
                 onNavigate = {navController.popBackStack()},
                 onClickBack = {navController.popBackStack()}
+            )
+        }
+
+        // ------------------Kamar------------------- //
+        composable(DestinasiHomeKmr.route) {
+            HomeKmrScreen(
+                navigateToItemEntry = {
+                    navController.navigate(DestinasiInsertKmr.route)
+                },
+                onDetailClick = { idKmr ->
+                    navController.navigate("${DestinasiDetailKmr.route}/$idKmr")
+                },
+                onBackClick = {navController.popBackStack()}
             )
         }
 
@@ -153,6 +160,70 @@ fun MainControllerPage(
             UpdateKmrScreen(
                 onNavigate = {navController.popBackStack()},
                 onClickBack = {navController.popBackStack()}
+            )
+        }
+
+        // ------------------Mahasiswa------------------- //
+        composable(DestinasiHomeMhs.route) {
+            HomeMhsScreen(
+                navigateToItemEntry = {
+                    navController.navigate(DestinasiInsertMhs.route)
+                },
+                onDetailClick = { idMhs ->
+                    navController.navigate("${DestinasiDetailMhs.route}/$idMhs")
+                },
+                onBackClick = {navController.popBackStack()},
+                onEditClick = {idMhs ->
+                    navController.navigate("${DestinasiUpdateMhs.route}/$idMhs")
+                }
+            )
+        }
+        composable(DestinasiInsertMhs.route) {
+            InsertMhsView(
+                onBackClick = { navController.popBackStack() },
+                onNavigate = { navController.popBackStack() },
+            )
+        }
+        composable(
+            DestinasiDetailMhs.routesWithArg,
+            arguments = listOf(
+                navArgument(DestinasiDetailMhs.idMhs) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val idMhs = it.arguments?.getString(DestinasiDetailMhs.idMhs)
+            idMhs?.let { idMhs ->
+                DetailMhsScreen(
+                    onClickBack = {
+                        navController.navigate(DestinasiHomeMhs.route) {
+                            popUpTo(DestinasiHomeMhs.route) {
+                                inclusive = true
+                            }
+                        }
+                    }
+                )
+            }
+        }
+        composable(
+            DestinasiUpdateMhs.routesWithArg,
+            arguments = listOf(
+                navArgument(DestinasiUpdateMhs.idMhs) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            UpdateMhsScreen(
+                onNavigate = {navController.popBackStack()},
+                onClickBack = {navController.popBackStack()}
+            )
+        }
+
+        // ------------------Transaksi------------------- //
+        composable(DestinasiHomePS.route) {
+            HomePsScreen(
+                navigateToItemEntry = {},
+                onDetailClick = {}
             )
         }
     }
