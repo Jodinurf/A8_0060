@@ -39,6 +39,8 @@ import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.DetailKmrUiState
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.DetailKmrViewModel
 import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import com.jodifrkh.asramaapp.ui.widget.OnError
+import com.jodifrkh.asramaapp.ui.widget.OnLoading
 
 @Composable
 fun DetailKmrScreen(

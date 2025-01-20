@@ -40,6 +40,8 @@ import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.DetailBgnUiState
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.DetailBgnViewModel
 import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import com.jodifrkh.asramaapp.ui.widget.OnError
+import com.jodifrkh.asramaapp.ui.widget.OnLoading
 
 @Composable
 fun DetailBgnScreen(
