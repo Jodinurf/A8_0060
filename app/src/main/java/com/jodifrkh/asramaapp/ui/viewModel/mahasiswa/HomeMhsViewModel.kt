@@ -1,12 +1,11 @@
 package com.jodifrkh.asramaapp.ui.viewModel.mahasiswa
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jodifrkh.asramaapp.data.model.Mahasiswa
 import com.jodifrkh.asramaapp.data.repository.MahasiswaRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import okio.IOException
 import retrofit2.HttpException
@@ -18,15 +17,18 @@ sealed class HomeUiState{
 }
 
 class HomeMhsViewModel (private val mhs: MahasiswaRepository): ViewModel(){
-    var mhsUIState: HomeUiState by mutableStateOf(HomeUiState.Loading)
-        private set
+
+    private val _mhsUIState = MutableStateFlow<HomeUiState>(HomeUiState.Loading)
+
+    val mhsUIState : StateFlow<HomeUiState> get() = _mhsUIState
+
     init {
         getMhs()
     }
     fun getMhs(){
         viewModelScope.launch {
-            mhsUIState = HomeUiState.Loading
-            mhsUIState = try {
+            _mhsUIState.value = HomeUiState.Loading
+            _mhsUIState.value = try {
                 HomeUiState.Success(mhs.getMahasiswa().data)
             } catch (e: IOException){
                 HomeUiState.Error
