@@ -16,7 +16,7 @@ data class Mahasiswa (
     val noHp : String,
 
     @SerialName("id_kamar")
-    val idKamar : Int
+    val idKmr : Int
 )
 
 @Serializable
