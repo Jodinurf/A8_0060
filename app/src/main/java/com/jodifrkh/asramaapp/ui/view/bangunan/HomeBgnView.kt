@@ -1,7 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.bangunan
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -26,6 +25,7 @@ import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeBgnViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeUiState
 import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun HomeBgnScreen(
@@ -71,26 +71,26 @@ fun HomeBgnScreen(
             modifier = Modifier
                 .padding(innerPadding),
             onDetailClick = onDetailClick,
-            onDeleteClick = {
-                viewModel.deleteBgn(it.idBgn)
-                viewModel.getBgn()
+            onDeleteClick = { bangunan ->
+                viewModel.deleteBgn(bangunan.idBgn)
             }
         )
     }
 }
 
+
 @Composable
 fun HomeStatus(
-    homeUiState: HomeUiState,
+    homeUiState: StateFlow<HomeUiState>,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
-    onDeleteClick: (Bangunan) -> Unit = {},
+    onDeleteClick: (Bangunan) -> Unit,
     onDetailClick: (String) -> Unit
 ) {
-    when (homeUiState) {
+    when (val state = homeUiState.collectAsState().value) {
         is HomeUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
-        is HomeUiState.Success ->
-            if (homeUiState.bangunan.isEmpty()) {
+        is HomeUiState.Success -> {
+            if (state.bangunan.isEmpty()) {
                 Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(
                         text = "Tidak Ada Data Bangunan",
@@ -101,15 +101,17 @@ fun HomeStatus(
                 }
             } else {
                 BgnLayout(
-                    bangunan = homeUiState.bangunan,
+                    bangunan = state.bangunan,
                     modifier = modifier.fillMaxWidth(),
                     onClick = onDetailClick,
                     onDeleteClick = onDeleteClick
                 )
             }
+        }
         is HomeUiState.Error -> OnError(retryAction, modifier = modifier.fillMaxSize())
     }
 }
+
 
 @Composable
 fun OnLoading(modifier: Modifier = Modifier) {
