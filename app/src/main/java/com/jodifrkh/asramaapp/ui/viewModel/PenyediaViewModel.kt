@@ -10,7 +10,10 @@ import com.jodifrkh.asramaapp.ui.viewModel.bangunan.DetailBgnViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeBgnViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.InsertBgnViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.UpdateBgnViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.kamar.DetailKmrViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeKmrViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.kamar.InsertKmrViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.kamar.UpdateKmrViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeMhsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.HomePSViewModel
 
@@ -41,6 +44,21 @@ object PenyediaViewModel {
             UpdateBgnViewModel(
                 createSavedStateHandle(),
                 AsramaApplication().container.bangunanRepository
+            )
+        }
+        initializer {
+            InsertKmrViewModel(AsramaApplication().container.kamarRepository)
+        }
+        initializer {
+            DetailKmrViewModel(
+                createSavedStateHandle(),
+                AsramaApplication().container.kamarRepository
+            )
+        }
+        initializer {
+            UpdateKmrViewModel(
+                createSavedStateHandle(),
+                AsramaApplication().container.kamarRepository
             )
         }
     }
