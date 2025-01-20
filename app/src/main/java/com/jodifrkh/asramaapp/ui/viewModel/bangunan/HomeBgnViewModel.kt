@@ -17,7 +17,7 @@ sealed class HomeUiState {
 }
 
 
-class HomeBgnViewModel(private val repository: BangunanRepository) : ViewModel() {
+class HomeBgnViewModel(private val bgn: BangunanRepository) : ViewModel() {
 
     private val _bgnUIState = MutableStateFlow<HomeUiState>(HomeUiState.Loading)
     val bgnUIState: StateFlow<HomeUiState> get() = _bgnUIState
@@ -30,7 +30,7 @@ class HomeBgnViewModel(private val repository: BangunanRepository) : ViewModel()
         viewModelScope.launch {
             _bgnUIState.value = HomeUiState.Loading
             _bgnUIState.value = try {
-                val bangunanList = repository.getBangunan().data
+                val bangunanList = bgn.getBangunan().data
                 HomeUiState.Success(bangunanList)
             } catch (e: IOException) {
                 HomeUiState.Error
@@ -43,7 +43,7 @@ class HomeBgnViewModel(private val repository: BangunanRepository) : ViewModel()
     fun deleteBgn(idBgn: Int) {
         viewModelScope.launch {
             try {
-                repository.deleteBangunan(idBgn)
+                bgn.deleteBangunan(idBgn)
                 getBgn()
             } catch (e: IOException) {
                 _bgnUIState.value = HomeUiState.Error

@@ -14,7 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -25,6 +24,8 @@ import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeBgnViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeUiState
 import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import com.jodifrkh.asramaapp.ui.widget.OnError
+import com.jodifrkh.asramaapp.ui.widget.OnLoading
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
@@ -109,54 +110,6 @@ fun HomeStatus(
             }
         }
         is HomeUiState.Error -> OnError(retryAction, modifier = modifier.fillMaxSize())
-    }
-}
-
-
-@Composable
-fun OnLoading(modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            modifier = Modifier.size(150.dp),
-            painter = painterResource(R.drawable.loading_img),
-            contentDescription = stringResource(R.string.loading)
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = "Memuat data...",
-            style = MaterialTheme.typography.bodyMedium,
-            color = Color(0xFF1DDBAF)
-        )
-    }
-}
-
-@Composable
-fun OnError(retryAction: () -> Unit, modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Icon(
-            imageVector = Icons.Default.Warning,
-            contentDescription = null,
-            tint = Color(0xFFFF6F61),
-            modifier = Modifier.size(48.dp)
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = stringResource(R.string.loading_failed),
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onError
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = retryAction, colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)) {
-            Text(stringResource(R.string.retry))
-        }
     }
 }
 
