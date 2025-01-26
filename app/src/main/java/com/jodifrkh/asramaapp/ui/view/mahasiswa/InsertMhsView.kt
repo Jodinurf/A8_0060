@@ -183,8 +183,16 @@ fun FormMhsInput(
     errorMhsState: FormErrorMhsState = FormErrorMhsState(),
     isReadOnly : Boolean = false
 ) {
-    var selectedNoKamar by remember { mutableStateOf(insertMhsUiEvent.idKmr) }
     val kamarOptions = ObjectMultipleChoice.optionsDropDownKamar()
+    var selectedNoKamar by remember {
+        mutableStateOf(
+            kamarOptions.find { it.second.toString() == insertMhsUiEvent.idKmr }?.first.orEmpty()
+        )
+    }
+
+    LaunchedEffect(insertMhsUiEvent.idKmr) {
+        selectedNoKamar = insertMhsUiEvent.idKmr
+    }
 
     Column(
         modifier = modifier
@@ -328,14 +336,13 @@ fun FormMhsInput(
                 modifier = Modifier.padding(start = 8.dp, top = 2.dp)
             )
         }
-        // Dropdown Bangunan
         DropdownKamar(
             selectedKamar = selectedNoKamar,
             onSelectedKamarChanged = { selectedKamar ->
                 selectedNoKamar = selectedKamar
                 val selectedIdKamar = kamarOptions.find { it.first == selectedKamar }
-                selectedIdKamar?.let { Kamar ->
-                    onValueChange(insertMhsUiEvent.copy(idKmr = Kamar.second.toString()))
+                selectedIdKamar?.let { kamar ->
+                    onValueChange(insertMhsUiEvent.copy(idKmr = kamar.second.toString()))
                 }
             },
             kamarOptions = kamarOptions,
