@@ -25,14 +25,12 @@ class UpdateMhsViewModel(
         }
     }
 
-
     init {
         viewModelScope.launch {
             val mahasiswa = mahasiswaRepository.getMahasiswaById(_idMhs.toInt())
             updateMhsUiState = mahasiswa.toUiStateMhs().copy(isEditing = true)
         }
     }
-
 
     private fun validateMhsFields() : Boolean {
         val event = updateMhsUiState.insertMhsUiEvent
