@@ -11,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -40,21 +41,24 @@ fun HomeMhsScreen(
     onDetailClick: (String) -> Unit = {},
     onBackClick: () -> Unit,
     onEditClick: (String) -> Unit,
+    onDropdownClick: (String) -> Unit,
     viewModel: HomeMhsViewModel = viewModel(factory = PenyediaViewModel.Factory),
     kamarViewModel : HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     val kamarList = optionsDropDownKamar(kamarViewModel)
     LaunchedEffect(Unit) {
         viewModel.getMhs()
+        kamarViewModel.getKmr()
     }
     Scaffold(
         topBar = {
             CustomTopAppBar(
                 title = DestinasiHomeMhs.titleRes,
-                canNavigateBack = true,
+                canNavigateBack = false,
                 onRefresh = { viewModel.getMhs() },
                 onBackClick = onBackClick,
-                refreshImageRes = R.drawable.ic_student
+                refreshImageRes = R.drawable.ic_student,
+                onDropdownClick = onDropdownClick
             )
         },
         floatingActionButton = {
@@ -159,9 +163,9 @@ fun MhsLayout(
 fun MhsCard(
     mahasiswa: Mahasiswa,
     modifier: Modifier = Modifier,
-    nomorKmr : String,
+    nomorKmr: String,
     onDeleteClick: (Mahasiswa) -> Unit = {},
-    onEditClick : () -> Unit
+    onEditClick: () -> Unit
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
@@ -176,105 +180,130 @@ fun MhsCard(
     }
 
     Card(
-        modifier = modifier,
-        shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+        modifier = modifier.padding(vertical = 8.dp),
+        shape = RoundedCornerShape(12.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
+            containerColor = Color(0xFFF5F5F5),
+            contentColor = Color(0xFF212121)
         )
     ) {
-        Row(
-            modifier = Modifier
-                .padding(12.dp)
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+        Column(
+            modifier = Modifier.padding(16.dp)
         ) {
-            // Avatar with Gradient
-            Box(
+            Row(
                 modifier = Modifier
-                    .size(56.dp)
-                    .background(
-                        brush = Brush.linearGradient(
-                            colors = listOf(
-                                MaterialTheme.colorScheme.primary,
-                                MaterialTheme.colorScheme.secondary
-                            )
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(48.dp)
+                        .background(
+                            brush = Brush.linearGradient(
+                                colors = listOf(
+                                    MaterialTheme.colorScheme.primary,
+                                    MaterialTheme.colorScheme.secondary
+                                )
+                            ),
+                            shape = CircleShape
                         ),
-                        shape = CircleShape
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = mahasiswa.nama.firstOrNull()?.uppercaseChar()?.toString() ?: "?",
-                    style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = mahasiswa.nama.firstOrNull()?.uppercaseChar()?.toString() ?: "?",
+                        style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(16.dp))
+
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = mahasiswa.nama,
+                        style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.SemiBold),
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "NIM : ${mahasiswa.nim}",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                    )
+                }
+
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    // Edit Button
+                    IconButton(onClick = onEditClick) {
+                        Icon(
+                            imageVector = Icons.Default.Edit,
+                            contentDescription = "Edit Mahasiswa",
+                            tint = Color(0xFFFFC107),
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                    // Delete Button
+                    IconButton(onClick = { showDialog = true }) {
+                        Icon(
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = "Hapus Mahasiswa",
+                            tint = MaterialTheme.colorScheme.error
+                        )
+                    }
+                }
             }
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
-            // Nama dan NIM Mahasiswa
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(
-                    text = mahasiswa.nama,
-                    style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onSurface
-                )
-                Text(
-                    text = mahasiswa.nim,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
-                )
-
-                Divider()
-                Text(
-                    text = "Nomor Kamar : ${nomorKmr}",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-
-            Spacer(modifier = Modifier.width(16.dp))
-            IconButton(onClick = onEditClick) {
-                Icon(
-                    imageVector = Icons.Default.Edit,
-                    contentDescription = null,
-                    tint = Color(0xFFFFC107),
-                )
-            }
-            // Delete Button
-            IconButton(onClick = { showDialog = true }) {
-                Icon(
-                    imageVector = Icons.Default.Delete,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.error
-                )
-            }
+            // Divider dan Status
+            Divider(color = Color.Gray, thickness = 1.dp)
+            Text(
+                text = "Nomor Kamar: $nomorKmr",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 12.dp)
+            )
         }
     }
 }
+
 
 @Composable
 private fun DeleteConfirmationDialog(
     onDeleteConfirm: () -> Unit,
     onDeleteCancel: () -> Unit,
-    modifier: Modifier = Modifier
 ) {
-    AlertDialog(onDismissRequest = {},
-        title = { Text("Delete Data") },
-        text = { Text("Apakah anda yakin ingin menghapus data?") },
-        modifier = modifier,
+    AlertDialog(
+        onDismissRequest = {},
+        title = {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    imageVector = Icons.Default.Warning,
+                    contentDescription = null,
+                    tint = Color(0xFFFF6F61),
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text("Delete Data", color = Color(0xFF2D2D2D))
+            }
+        },
+        text = { Text("Apakah anda yakin ingin menghapus data ini?") },
         dismissButton = {
             TextButton(onClick = onDeleteCancel) {
-                Text(text = "Cancel")
+                Text(text = "Cancel", color = Color(0xFF1DDBAF))
             }
         },
         confirmButton = {
             TextButton(onClick = onDeleteConfirm) {
-                Text(text = "Yes")
+                Text(text = "Yes", color = Color(0xFFFF6F61))
             }
         }
     )
 }
+
