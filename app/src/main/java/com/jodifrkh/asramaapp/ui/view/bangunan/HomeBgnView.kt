@@ -1,17 +1,21 @@
 package com.jodifrkh.asramaapp.ui.view.bangunan
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -32,6 +36,8 @@ import kotlinx.coroutines.flow.StateFlow
 fun HomeBgnScreen(
     navigateToItemEntry: () -> Unit,
     onDetailClick: (String) -> Unit = {},
+    onEditClick: (String) -> Unit,
+    onDropdownClick: (String) -> Unit,
     viewModel: HomeBgnViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onBackClick: () -> Unit,
 ) {
@@ -43,12 +49,14 @@ fun HomeBgnScreen(
         topBar = {
             CustomTopAppBar(
                 title = DestinasiHomeBgn.titleRes,
-                canNavigateBack = true,
+                canNavigateBack = false,
                 onRefresh = {
                     viewModel.getBgn()
                 },
                 onBackClick = onBackClick,
-                refreshImageRes = R.drawable.icon_building
+                refreshImageRes = R.drawable.icon_building,
+                onDropdownClick = onDropdownClick
+
             )
         },
         floatingActionButton = {
@@ -74,7 +82,8 @@ fun HomeBgnScreen(
             onDetailClick = onDetailClick,
             onDeleteClick = { bangunan ->
                 viewModel.deleteBgn(bangunan.idBgn)
-            }
+            },
+            onEditClick = onEditClick
         )
     }
 }
@@ -86,7 +95,8 @@ fun HomeStatus(
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
     onDeleteClick: (Bangunan) -> Unit,
-    onDetailClick: (String) -> Unit
+    onDetailClick: (String) -> Unit,
+    onEditClick: (String) -> Unit
 ) {
     when (val state = homeUiState.collectAsState().value) {
         is HomeUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
@@ -105,7 +115,8 @@ fun HomeStatus(
                     bangunan = state.bangunan,
                     modifier = modifier.fillMaxWidth(),
                     onClick = onDetailClick,
-                    onDeleteClick = onDeleteClick
+                    onDeleteClick = onDeleteClick,
+                    onEditClick = onEditClick
                 )
             }
         }
@@ -118,7 +129,8 @@ fun BgnLayout(
     bangunan: List<Bangunan>,
     modifier: Modifier = Modifier,
     onClick: (String) -> Unit,
-    onDeleteClick: (Bangunan) -> Unit = {}
+    onDeleteClick: (Bangunan) -> Unit = {},
+    onEditClick: (String) -> Unit
 ) {
     LazyColumn(
         modifier = modifier,
@@ -130,7 +142,8 @@ fun BgnLayout(
                 bangunan = bangunan,
                 modifier = Modifier.fillMaxWidth(),
                 onClick = { onClick(bangunan.idBgn.toString())},
-                onDeleteClick = onDeleteClick
+                onDeleteClick = onDeleteClick,
+                onEditClick = { onEditClick(bangunan.idBgn.toString())}
             )
         }
     }
@@ -142,7 +155,8 @@ fun BgnCard(
     bangunan: Bangunan,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = { },
-    onDeleteClick: (Bangunan) -> Unit = {}
+    onDeleteClick: (Bangunan) -> Unit = {},
+    onEditClick: () -> Unit = {}
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
@@ -157,18 +171,20 @@ fun BgnCard(
     }
 
     Card(
-        modifier = modifier,
+        modifier = modifier
+            .padding(vertical = 8.dp, horizontal = 16.dp)
+            .fillMaxWidth(),
         onClick = onClick,
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(
             containerColor = Color(0xFFF5F5F5),
             contentColor = Color(0xFF212121)
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -177,37 +193,50 @@ fun BgnCard(
                 Image(
                     painter = painterResource(id = R.drawable.ic_building),
                     contentDescription = null,
-                    modifier = Modifier.size(58.dp)
+                    modifier = Modifier
+                        .size(48.dp)
+                        .clip(CircleShape)
+                        .border(2.dp, Color.Gray, CircleShape)
                 )
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(12.dp))
                 Text(
                     text = bangunan.namaBgn,
                     style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.weight(1f)
                 )
-                Spacer(Modifier.weight(1f))
+                IconButton(onClick = onEditClick) {
+                    Icon(
+                        imageVector = Icons.Default.Edit,
+                        contentDescription = "Edit",
+                        tint = Color(0xFFFFC107)
+                    )
+                }
                 IconButton(onClick = { showDialog = true }) {
                     Icon(
                         imageVector = Icons.Default.Delete,
-                        contentDescription = null,
+                        contentDescription = "Delete",
                         tint = MaterialTheme.colorScheme.error
                     )
                 }
             }
 
-            Divider()
+            Divider(color = Color.Gray.copy(alpha = 0.5f))
 
             Text(
-                text = bangunan.alamat,
+                text = "Alamat: ${bangunan.alamat}",
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 8.dp)
             )
+
+
         }
     }
 }
 
 @Composable
-private fun DeleteConfirmationDialog(
+fun DeleteConfirmationDialog(
     onDeleteConfirm: () -> Unit,
     onDeleteCancel: () -> Unit,
 ) {
@@ -222,18 +251,24 @@ private fun DeleteConfirmationDialog(
                     modifier = Modifier.size(24.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("Delete Data", color = Color(0xFF2D2D2D))
+                Text("Hapus Data", color = Color(0xFF2D2D2D))
             }
         },
-        text = { Text("Apakah anda yakin ingin menghapus data ini?") },
+        text = {
+            Text(
+                text = "Apakah Anda yakin ingin menghapus data ini?",
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+        },
         dismissButton = {
             TextButton(onClick = onDeleteCancel) {
-                Text(text = "Cancel", color = Color(0xFF1DDBAF))
+                Text(text = "Batal", color = Color(0xFF1DDBAF))
             }
         },
         confirmButton = {
             TextButton(onClick = onDeleteConfirm) {
-                Text(text = "Yes", color = Color(0xFFFF6F61))
+                Text(text = "Ya", color = Color(0xFFFF6F61))
             }
         }
     )
