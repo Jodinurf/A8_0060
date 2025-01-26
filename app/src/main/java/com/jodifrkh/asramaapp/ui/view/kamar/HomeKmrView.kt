@@ -1,6 +1,7 @@
 package com.jodifrkh.asramaapp.ui.view.kamar
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,9 +15,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
@@ -39,6 +42,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -62,6 +66,8 @@ fun HomeKmrScreen(
     navigateToItemEntry: () -> Unit,
     onDetailClick: (String) -> Unit = {},
     onBackClick: () -> Unit,
+    onEditClick: (String) -> Unit,
+    onDropdownClick: (String) -> Unit,
     viewModel: HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory),
     bangunanViewModel: HomeBgnViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
@@ -74,10 +80,11 @@ fun HomeKmrScreen(
         topBar = {
             CustomTopAppBar(
                 title = DestinasiHomeKmr.titleRes,
-                canNavigateBack = true,
+                canNavigateBack = false,
                 onRefresh = { viewModel.getKmr() },
                 onBackClick = onBackClick,
-                refreshImageRes = R.drawable.ic_bedroom
+                refreshImageRes = R.drawable.ic_bedroom,
+                onDropdownClick = onDropdownClick
             )
         },
         floatingActionButton = {
@@ -104,7 +111,8 @@ fun HomeKmrScreen(
             onDeleteClick = {
                 viewModel.deleteKmr(it.idKmr)
                 viewModel.getKmr()
-            }
+            },
+            onEditClick = onEditClick
         )
     }
 }
@@ -117,7 +125,8 @@ fun HomeStatus(
     bangunanList: List<Pair<String, Int>>,
     modifier: Modifier = Modifier,
     onDeleteClick: (Kamar) -> Unit = {},
-    onDetailClick: (String) -> Unit
+    onDetailClick: (String) -> Unit,
+    onEditClick: (String) -> Unit
 ) {
     when (val state = homeUiState.collectAsState().value) {
         is HomeUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
@@ -137,7 +146,8 @@ fun HomeStatus(
                     bangunanList = bangunanList,
                     modifier = modifier.fillMaxWidth(),
                     onClick = onDetailClick,
-                    onDeleteClick = onDeleteClick
+                    onDeleteClick = onDeleteClick,
+                    onEditClick = onEditClick
                 )
             }
         }
@@ -153,6 +163,7 @@ fun KmrLayout(
     bangunanList: List<Pair<String, Int>>,
     modifier: Modifier = Modifier,
     onClick: (String) -> Unit,
+    onEditClick: (String) -> Unit,
     onDeleteClick: (Kamar) -> Unit = {}
 ) {
     LazyColumn(
@@ -167,7 +178,10 @@ fun KmrLayout(
                 namaBgn = namaBgn,
                 modifier = Modifier.fillMaxWidth(),
                 onClick = { onClick(kamar.idKmr.toString()) },
-                onDeleteClick = onDeleteClick
+                onDeleteClick = onDeleteClick,
+                onEditClick = {
+                    onEditClick(kamar.idKmr.toString())
+                }
             )
         }
     }
@@ -183,6 +197,7 @@ fun KmrCard(
     namaBgn: String,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = { },
+    onEditClick: () -> Unit,
     onDeleteClick: (Kamar) -> Unit = {}
 ) {
     var showDialog by remember { mutableStateOf(false) }
@@ -218,10 +233,16 @@ fun KmrCard(
                 Image(
                     painter = painterResource(id = R.drawable.ic_building),
                     contentDescription = null,
-                    modifier = Modifier.size(58.dp)
+                    modifier = Modifier
+                        .size(48.dp)
+                        .clip(CircleShape)
+                        .border(2.dp, Color.Gray, CircleShape)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Column {
+
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
                     Text(
                         text = namaBgn,
                         style = MaterialTheme.typography.titleLarge,
@@ -229,11 +250,18 @@ fun KmrCard(
                     )
                     Text(
                         text = "Nomor Kamar : ${kamar.nomorKmr}",
-                        style = MaterialTheme.typography.titleSmall,
+                        style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                 }
-                Spacer(Modifier.weight(1f))
+
+                IconButton(onClick = onEditClick) {
+                    Icon(
+                        imageVector = Icons.Default.Edit,
+                        contentDescription = "Edit",
+                        tint = Color(0xFFFFC107)
+                    )
+                }
                 IconButton(onClick = { showDialog = true }) {
                     Icon(
                         imageVector = Icons.Default.Delete,
@@ -244,14 +272,20 @@ fun KmrCard(
             }
 
             Divider()
-            Text(
-                text = "Status : ${kamar.statusKmr}",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(
+                    text = "Status: ${kamar.statusKmr}",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
         }
     }
 }
+
 
 
 @Composable
