@@ -5,11 +5,6 @@ interface NavigateDestination {
     val titleRes: String
 }
 
-object DestinasiHomepage : NavigateDestination {
-    override val route = "homepage"
-    override val titleRes = "Homepage"
-}
-
 // ------------------Bangunan------------------- //
 object DestinasiHomeBgn : NavigateDestination {
     override val route = "homeBgn"
@@ -89,3 +84,32 @@ object DestinasiHomePS : NavigateDestination {
     override val route = "homePS"
     override val titleRes = "Daftar Pembayaran"
 }
+
+object DestinasiInsertPS : NavigateDestination {
+    const val idMahasiswa = "idMhs"
+    override val route = "insertPS/{$idMahasiswa}"
+    override val titleRes = "Tambah Data Pembayaran"
+
+    fun createRoute(idMahasiswa: String) = "insertPS/$idMahasiswa"
+}
+
+object DestinasiDetailPS : NavigateDestination {
+    override val titleRes = "Detail Pembayaran"
+    override val route = "detailPS"
+
+    const val idPs = "idPs"
+    const val idMhs = "idMhs"
+
+    val routeWithIdPs = "$route/{$idPs}"
+    val routeWithIdMhs = "$route/mhs/{$idMhs}"
+}
+
+
+
+object DestinasiUpdatePS : NavigateDestination {
+    override val route = "updatePS"
+    override val titleRes = "Update Pembayaran"
+    const val idPs = "idPs"
+    val routesWithArg = "$route/{$idPs}"
+}
+
