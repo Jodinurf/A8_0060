@@ -7,7 +7,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.jodifrkh.asramaapp.ui.view.Homepage
 import com.jodifrkh.asramaapp.ui.view.bangunan.DetailBgnScreen
 import com.jodifrkh.asramaapp.ui.view.bangunan.HomeBgnScreen
 import com.jodifrkh.asramaapp.ui.view.bangunan.InsertBgnView
@@ -20,7 +19,10 @@ import com.jodifrkh.asramaapp.ui.view.mahasiswa.DetailMhsScreen
 import com.jodifrkh.asramaapp.ui.view.mahasiswa.HomeMhsScreen
 import com.jodifrkh.asramaapp.ui.view.mahasiswa.InsertMhsView
 import com.jodifrkh.asramaapp.ui.view.mahasiswa.UpdateMhsScreen
+import com.jodifrkh.asramaapp.ui.view.pembayaranSewa.DetailPsScreen
 import com.jodifrkh.asramaapp.ui.view.pembayaranSewa.HomePsScreen
+import com.jodifrkh.asramaapp.ui.view.pembayaranSewa.InsertPSView
+import com.jodifrkh.asramaapp.ui.view.pembayaranSewa.UpdatePsScreen
 
 @Composable
 fun MainControllerPage(
@@ -28,23 +30,8 @@ fun MainControllerPage(
 ) {
     NavHost(
         navController = navController,
-        startDestination = DestinasiHomepage.route
+        startDestination = DestinasiHomeMhs.route
     ) {
-
-        composable(DestinasiHomepage.route) {
-            Homepage(
-                onItemClick = { item ->
-                    when (item) {
-                        "Bangunan" -> navController.navigate(DestinasiHomeBgn.route)
-                        "Kamar" -> navController.navigate(DestinasiHomeKmr.route)
-                        "Mahasiswa" -> navController.navigate(DestinasiHomeMhs.route)
-                        "Pembayaran Sewa" -> navController.navigate(DestinasiHomePS.route)
-                        else -> {}
-                    }
-                }
-            )
-        }
-
         // ------------------Bangunan------------------- //
         composable(DestinasiHomeBgn.route) {
             HomeBgnScreen(
@@ -54,7 +41,35 @@ fun MainControllerPage(
                 onDetailClick = { idBgn ->
                     navController.navigate("${DestinasiDetailBgn.route}/$idBgn")
                 },
-                onBackClick = {navController.popBackStack()}
+                onBackClick = {navController.popBackStack()},
+                onEditClick = { idBgn ->
+                    navController.navigate("${DestinasiUpdateBgn.route}/$idBgn")
+                },
+                onDropdownClick = { item ->
+                    when (item) {
+                        "Bangunan" -> navController.navigate(DestinasiHomeBgn.route) {
+                            popUpTo(DestinasiHomeBgn.route) {
+                                inclusive = true
+                            }
+                        }
+                        "Kamar" -> navController.navigate(DestinasiHomeKmr.route) {
+                            popUpTo(DestinasiHomeKmr.route) {
+                                inclusive = true
+                            }
+                        }
+                        "Mahasiswa" -> navController.navigate(DestinasiHomeMhs.route) {
+                            popUpTo(DestinasiHomeMhs.route) {
+                                inclusive = true
+                            }
+                        }
+                        "Pembayaran Sewa" -> navController.navigate(DestinasiHomePS.route) {
+                            popUpTo(DestinasiHomePS.route) {
+                                inclusive = true
+                            }
+                        }
+                        else -> {}
+                    }
+                }
             )
         }
 
@@ -113,7 +128,35 @@ fun MainControllerPage(
                 onDetailClick = { idKmr ->
                     navController.navigate("${DestinasiDetailKmr.route}/$idKmr")
                 },
-                onBackClick = {navController.popBackStack()}
+                onBackClick = {navController.popBackStack()},
+                onEditClick = { idKmr ->
+                    navController.navigate("${DestinasiUpdateKmr.route}/$idKmr")
+                },
+                onDropdownClick = { item ->
+                    when (item) {
+                        "Bangunan" -> navController.navigate(DestinasiHomeBgn.route) {
+                            popUpTo(DestinasiHomeBgn.route) {
+                                inclusive = true
+                            }
+                        }
+                        "Kamar" -> navController.navigate(DestinasiHomeKmr.route) {
+                            popUpTo(DestinasiHomeKmr.route) {
+                                inclusive = true
+                            }
+                        }
+                        "Mahasiswa" -> navController.navigate(DestinasiHomeMhs.route) {
+                            popUpTo(DestinasiHomeMhs.route) {
+                                inclusive = true
+                            }
+                        }
+                        "Pembayaran Sewa" -> navController.navigate(DestinasiHomePS.route) {
+                            popUpTo(DestinasiHomePS.route) {
+                                inclusive = true
+                            }
+                        }
+                        else -> {}
+                    }
+                }
             )
         }
 
@@ -175,6 +218,31 @@ fun MainControllerPage(
                 onBackClick = {navController.popBackStack()},
                 onEditClick = {idMhs ->
                     navController.navigate("${DestinasiUpdateMhs.route}/$idMhs")
+                },
+                onDropdownClick = { item ->
+                    when (item) {
+                        "Bangunan" -> navController.navigate(DestinasiHomeBgn.route) {
+                            popUpTo(DestinasiHomeBgn.route) {
+                                inclusive = true
+                            }
+                        }
+                        "Kamar" -> navController.navigate(DestinasiHomeKmr.route) {
+                            popUpTo(DestinasiHomeKmr.route) {
+                                inclusive = true
+                            }
+                        }
+                        "Mahasiswa" -> navController.navigate(DestinasiHomeMhs.route) {
+                            popUpTo(DestinasiHomeMhs.route) {
+                                inclusive = true
+                            }
+                        }
+                        "Pembayaran Sewa" -> navController.navigate(DestinasiHomePS.route) {
+                            popUpTo(DestinasiHomePS.route) {
+                                inclusive = true
+                            }
+                        }
+                        else -> {}
+                    }
                 }
             )
         }
@@ -201,10 +269,17 @@ fun MainControllerPage(
                                 inclusive = true
                             }
                         }
+                    },
+                    onTambahPembayaranClick = { idMhs ->
+                        navController.navigate(DestinasiInsertPS.createRoute(idMhs))
+                    },
+                    onLihatRiwayatTransaksiClick = { idMhs ->
+                        navController.navigate("${DestinasiDetailPS.route}/mhs/$idMhs")
                     }
                 )
             }
         }
+
         composable(
             DestinasiUpdateMhs.routesWithArg,
             arguments = listOf(
@@ -222,9 +297,122 @@ fun MainControllerPage(
         // ------------------Transaksi------------------- //
         composable(DestinasiHomePS.route) {
             HomePsScreen(
-                navigateToItemEntry = {},
-                onDetailClick = {}
+                onDetailClick = {idPs ->
+                    navController.navigate("${DestinasiDetailPS.route}/$idPs")
+                },
+                onEditClick = { idPs ->
+                    navController.navigate("${DestinasiUpdatePS.route}/$idPs")
+                },
+                onBackClick = {navController.popBackStack()},
+                onDropdownClick = { item ->
+                    when (item) {
+                        "Bangunan" -> navController.navigate(DestinasiHomeBgn.route) {
+                            popUpTo(DestinasiHomeBgn.route) {
+                                inclusive = true
+                            }
+                        }
+                        "Kamar" -> navController.navigate(DestinasiHomeKmr.route) {
+                            popUpTo(DestinasiHomeKmr.route) {
+                                inclusive = true
+                            }
+                        }
+                        "Mahasiswa" -> navController.navigate(DestinasiHomeMhs.route) {
+                            popUpTo(DestinasiHomeMhs.route) {
+                                inclusive = true
+                            }
+                        }
+                        "Pembayaran Sewa" -> navController.navigate(DestinasiHomePS.route) {
+                            popUpTo(DestinasiHomePS.route) {
+                                inclusive = true
+                            }
+                        }
+                        else -> {}
+                    }
+                }
             )
+        }
+
+        composable(
+            DestinasiInsertPS.route,
+            arguments = listOf(
+                navArgument(DestinasiInsertPS.idMahasiswa) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val idMahasiswa = it.arguments?.getString(DestinasiInsertPS.idMahasiswa)
+            InsertPSView(
+                idMahasiswa = idMahasiswa ?: "",
+                onBackClick = { navController.popBackStack() },
+                onNavigate = { navController.popBackStack() }
+            )
+        }
+
+        composable(
+            DestinasiDetailPS.routeWithIdPs,
+            arguments = listOf(
+                navArgument(DestinasiDetailPS.idPs) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val idPs = it.arguments?.getString(DestinasiDetailPS.idPs)
+            idPs?.let { idPs ->
+                DetailPsScreen(
+                    idPs = idPs,
+                    onClickBack = {
+                        navController.navigate(DestinasiHomePS.route) {
+                            popUpTo(DestinasiHomePS.route) {
+                                inclusive = true
+                            }
+                        }
+                    }
+                )
+            } ?: run {
+                navController.navigateUp()
+            }
+        }
+        composable(
+            DestinasiDetailPS.routeWithIdMhs,
+            arguments = listOf(
+                navArgument(DestinasiDetailPS.idMhs) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val idMhs = it.arguments?.getString(DestinasiDetailPS.idMhs)
+            idMhs?.let { idMhs ->
+                DetailPsScreen(
+                    idMhs = idMhs, // Tambahkan parameter idMhs
+                    onClickBack = {
+                        navController.navigate(DestinasiHomeMhs.route) {
+                            popUpTo(DestinasiHomeMhs.route) {
+                                inclusive = true
+                            }
+                        }
+                    }
+                )
+            } ?: run {
+                navController.navigateUp()
+            }
+        }
+
+
+        composable(
+            DestinasiUpdatePS.routesWithArg,
+            arguments = listOf(
+                navArgument(DestinasiUpdatePS.idPs) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val idPs = it.arguments?.getString(DestinasiUpdatePS.idPs)
+            idPs?. let { idPs ->
+                UpdatePsScreen(
+                    onNavigate = {navController.popBackStack()},
+                    onClickBack = {navController.popBackStack()}
+                )
+            }
         }
     }
 }
