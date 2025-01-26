@@ -3,7 +3,7 @@
 ## On Start Homepage is Daftar Mahasiswa
 | **Bangunan Homepage** | **Kamar Homepage** | **Pembayaran Homepage** | **Mahasiswa Homepage** |
 | --- | --- | --- | --- |
-| <img src="https://github.com/user-attachments/assets/e72d0893-ed9d-41ca-b117-76bbe82496ef" width="250" height="300"> | <img src="https://github.com/user-attachments/assets/0b7e39e7-eaf4-46e9-b4ea-1ef411780ab6" width="250" height="300"> | <img src="https://github.com/user-attachments/assets/5b96599c-51f0-43c2-99ab-f24958fe8488" width="250" height="300"> | <img src="https://github.com/user-attachments/assets/71ff25db-13d4-4cc0-b74d-1b7787afdb35" width="250" height="300"> |
+| <img src="https://github.com/user-attachments/assets/e72d0893-ed9d-41ca-b117-76bbe82496ef" width="250"> | <img src="https://github.com/user-attachments/assets/0b7e39e7-eaf4-46e9-b4ea-1ef411780ab6" width="250"> | <img src="https://github.com/user-attachments/assets/5b96599c-51f0-43c2-99ab-f24958fe8488" width="250"> | <img src="https://github.com/user-attachments/assets/71ff25db-13d4-4cc0-b74d-1b7787afdb35" width="250"> |
 
 ## Insert Operation in Bangunan
 | **Bangunan Homepage before Insert** | **Insert Bangunan Page** | **Result Bangunan Homepage after Insert** |
