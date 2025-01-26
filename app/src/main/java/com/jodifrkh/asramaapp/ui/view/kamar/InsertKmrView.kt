@@ -181,8 +181,18 @@ fun FormKmrInput(
     errorKmrState: FormErrorKmrState = FormErrorKmrState(),
     isReadOnly : Boolean = false
 ) {
-    var selectedBangunanName by remember { mutableStateOf(insertKmrUiEvent.idKmr) }
     val bangunanOptions = ObjectMultipleChoice.optionsDropdownBangunan()
+    var selectedBangunanName by remember {
+        mutableStateOf(
+            bangunanOptions.find {
+                it.second.toString() == insertKmrUiEvent.idKmr
+            }?.first.orEmpty()
+        )
+    }
+
+    LaunchedEffect (insertKmrUiEvent.idKmr) {
+        selectedBangunanName = insertKmrUiEvent.idKmr
+    }
 
     Column(
         modifier = modifier
