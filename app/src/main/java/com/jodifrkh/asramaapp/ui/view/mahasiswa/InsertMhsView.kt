@@ -186,7 +186,7 @@ fun FormMhsInput(
     val kamarOptions = ObjectMultipleChoice.optionsDropDownKamar()
     var selectedNoKamar by remember {
         mutableStateOf(
-            kamarOptions.find { it.second.toString() == insertMhsUiEvent.idKmr }?.first.orEmpty()
+            kamarOptions.find { it.second.toString() == insertMhsUiEvent.idKmr  }?.first.orEmpty()
         )
     }
 

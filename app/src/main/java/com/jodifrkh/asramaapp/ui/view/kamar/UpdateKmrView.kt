@@ -144,7 +144,7 @@ fun InsertUpdateBodyKmr(
     val coroutineScope = rememberCoroutineScope()
 
     val bangunan = uiState.insertKmrUiEvent
-    val idBgnKmr = bangunan.idKmr
+    val idBgnKmr = bangunan.idBgn
 
     val namaBgn = bgnList.find { it.second.toString() == idBgnKmr }?.first
         ?: "Bangunan tidak ditemukan"

@@ -23,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jodifrkh.asramaapp.R
+import com.jodifrkh.asramaapp.data.ObjectMultipleChoice.kamarChoice
 import com.jodifrkh.asramaapp.data.model.Mahasiswa
 import com.jodifrkh.asramaapp.navigation.DestinasiHomeMhs
 import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
@@ -32,7 +33,6 @@ import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeUiState
 import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
 import com.jodifrkh.asramaapp.ui.widget.OnError
 import com.jodifrkh.asramaapp.ui.widget.OnLoading
-import com.jodifrkh.asramaapp.data.ObjectMultipleChoice.optionsDropDownKamar
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
@@ -45,7 +45,7 @@ fun HomeMhsScreen(
     viewModel: HomeMhsViewModel = viewModel(factory = PenyediaViewModel.Factory),
     kamarViewModel : HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
-    val kamarList = optionsDropDownKamar(kamarViewModel)
+    val kamarList = kamarChoice(kamarViewModel)
     LaunchedEffect(Unit) {
         viewModel.getMhs()
         kamarViewModel.getKmr()

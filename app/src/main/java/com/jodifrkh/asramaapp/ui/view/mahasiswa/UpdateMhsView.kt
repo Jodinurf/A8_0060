@@ -45,7 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jodifrkh.asramaapp.R
-import com.jodifrkh.asramaapp.data.ObjectMultipleChoice.optionsDropDownKamar
+import com.jodifrkh.asramaapp.data.ObjectMultipleChoice.kamarChoice
 import com.jodifrkh.asramaapp.navigation.DestinasiUpdateMhs
 import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeKmrViewModel
@@ -66,7 +66,7 @@ fun UpdateMhsScreen(
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val uiState = viewModel.updateMhsUiState
-    val kmrList = optionsDropDownKamar(kmrViewModel)
+    val kmrList = kamarChoice(kmrViewModel)
 
     LaunchedEffect(uiState.snackBarMessage) {
         uiState.snackBarMessage?.let { message ->

@@ -1,6 +1,8 @@
 package com.jodifrkh.asramaapp.ui.view.mahasiswa
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -37,7 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jodifrkh.asramaapp.R
-import com.jodifrkh.asramaapp.data.ObjectMultipleChoice.optionsDropDownKamar
+import com.jodifrkh.asramaapp.data.ObjectMultipleChoice.kamarChoice
 import com.jodifrkh.asramaapp.data.model.Mahasiswa
 import com.jodifrkh.asramaapp.navigation.DestinasiDetailMhs
 import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
@@ -56,7 +58,7 @@ fun DetailMhsScreen(
     viewModel: DetailMhsViewModel = viewModel(factory = PenyediaViewModel.Factory),
     kamarViewModel : HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory),
 ) {
-    val kamarList = optionsDropDownKamar(kamarViewModel)
+    val kamarList = kamarChoice(kamarViewModel)
 
     LaunchedEffect(Unit) {
         viewModel.getMahasiswaById()
@@ -247,12 +249,30 @@ fun ItemDetailMhs(
                     .height(50.dp),
                 shape = MaterialTheme.shapes.large,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF1DDBAF),
+                    containerColor = Color(0xFF07978F),
                     contentColor = Color.White
                 )
             ) {
-                Text(text = "Lihat Riwayat Transaksi", fontSize = 18.sp)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.ic_eye),
+                        contentDescription = "Ikon Transaksi",
+                        modifier = Modifier
+                            .size(30.dp)
+                            .padding(end = 8.dp)
+                    )
+                    Text(
+                        text = "Lihat Riwayat Transaksi",
+                        fontSize = 18.sp
+                    )
+                }
             }
+
+
             Spacer(modifier = Modifier.height(24.dp))
             Button(
                 onClick = onTambahPembayaranClick,
