@@ -22,6 +22,7 @@ import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeBgnViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeUiState
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeKmrViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeMhsViewModel
 
 object ObjectMultipleChoice {
     @Composable
@@ -53,6 +54,21 @@ object ObjectMultipleChoice {
     }
 
     @Composable
+    fun optionsDropdownMhs(
+        homeMhsViewModel: HomeMhsViewModel = viewModel(factory = PenyediaViewModel.Factory)
+    ): List<Pair<String, Int>> {
+        val dataMahasiswa by homeMhsViewModel.mhsUIState.collectAsState()
+
+        return if (dataMahasiswa is com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeUiState.Success) {
+            val namaList = (dataMahasiswa as com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeUiState.Success).mahasiswa
+            namaList.map { it.nama to it.idMhs }
+        } else {
+            emptyList()
+        }
+    }
+
+
+    @Composable
     fun StatusKamarRadioButton(
         statusKamar: String,
         onStatusChanged: (String) -> Unit,
@@ -80,6 +96,66 @@ object ObjectMultipleChoice {
                 val options = listOf("Terisi", "Kosong")
                 options.forEach { option ->
                     val isSelected = statusKamar == option
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        RadioButton(
+                            selected = isSelected,
+                            onClick = { onStatusChanged(option) },
+                            colors = RadioButtonDefaults.colors(
+                                selectedColor = if (error == null) focusedColor else errorColor,
+                                unselectedColor = unfocusedColor,
+                            )
+                        )
+                        Text(
+                            text = option,
+                            fontSize = 16.sp,
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                }
+            }
+
+            // Show error if exists
+            if (error != null) {
+                Text(
+                    text = error,
+                    color = errorColor,
+                    fontSize = 12.sp
+                )
+            }
+        }
+    }
+
+    @Composable
+    fun StatusBayarRadioButton(
+        statusBayar: String,
+        onStatusChanged: (String) -> Unit,
+        error: String? = null,
+        modifier: Modifier = Modifier
+    ) {
+        val focusedColor = Color(0xFF1DDBAF)
+        val unfocusedColor = Color(0xFFB0BEC5)
+        val errorColor = Color.Red
+
+        Column(
+            modifier = modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Text(
+                text = "Status Pembayaran",
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                val options = listOf("Belum Lunas", "Lunas")
+                options.forEach { option ->
+                    val isSelected = statusBayar == option
 
                     Row(
                         verticalAlignment = Alignment.CenterVertically
