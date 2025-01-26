@@ -16,6 +16,8 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
@@ -28,14 +30,18 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jodifrkh.asramaapp.R
+import com.jodifrkh.asramaapp.data.ObjectMultipleChoice.optionsDropDownKamar
 import com.jodifrkh.asramaapp.data.model.Mahasiswa
 import com.jodifrkh.asramaapp.navigation.DestinasiDetailMhs
 import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeKmrViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.DetailMhsUiState
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.DetailMhsViewModel
 import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
@@ -45,8 +51,13 @@ import com.jodifrkh.asramaapp.ui.widget.OnLoading
 @Composable
 fun DetailMhsScreen(
     onClickBack: () -> Unit,
-    viewModel: DetailMhsViewModel = viewModel(factory = PenyediaViewModel.Factory)
+    onTambahPembayaranClick: (String) -> Unit,
+    onLihatRiwayatTransaksiClick: (String) -> Unit,
+    viewModel: DetailMhsViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    kamarViewModel : HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory),
 ) {
+    val kamarList = optionsDropDownKamar(kamarViewModel)
+
     LaunchedEffect(Unit) {
         viewModel.getMahasiswaById()
     }
@@ -65,7 +76,10 @@ fun DetailMhsScreen(
         DetailMhsStatus(
             modifier = Modifier.padding(innerPadding),
             detailMhsUiState = viewModel.mahasiswaDetailState,
-            retryAction = { viewModel.getMahasiswaById() }
+            retryAction = { viewModel.getMahasiswaById() },
+            kamarList = kamarList,
+            onTambahPembayaranClick = onTambahPembayaranClick,
+            onLihatRiwayatTransaksiClick = onLihatRiwayatTransaksiClick
         )
     }
 }
@@ -74,7 +88,10 @@ fun DetailMhsScreen(
 fun DetailMhsStatus(
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
-    detailMhsUiState: DetailMhsUiState
+    detailMhsUiState: DetailMhsUiState,
+    kamarList: List<Pair<String, Int>>,
+    onLihatRiwayatTransaksiClick: (String) -> Unit,
+    onTambahPembayaranClick: (String) -> Unit
 ) {
     when (detailMhsUiState) {
         is DetailMhsUiState.Loading -> OnLoading(
@@ -82,7 +99,8 @@ fun DetailMhsStatus(
         )
 
         is DetailMhsUiState.Success -> {
-            if (detailMhsUiState.mahasiswa.idMhs.toString().isEmpty()) {
+            val mahasiswa = detailMhsUiState.mahasiswa
+            if (mahasiswa.idMhs.toString().isEmpty()) {
                 Box(
                     modifier = modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
@@ -95,12 +113,20 @@ fun DetailMhsStatus(
                     )
                 }
             } else {
+                val idKmrMhs = mahasiswa.idKmr
+
+                val nomorKmr = kamarList.find { it.second == idKmrMhs }?.first
+                    ?: "Kamar tidak ditemukan"
+
                 AnimatedVisibility(visible = true) {
                     ItemDetailMhs(
-                        mahasiswa = detailMhsUiState.mahasiswa,
+                        mahasiswa = mahasiswa,
+                        nomorKmr = nomorKmr,
                         modifier = modifier
                             .fillMaxWidth()
-                            .padding(16.dp)
+                            .padding(16.dp),
+                        onTambahPembayaranClick = { onTambahPembayaranClick(mahasiswa.idMhs.toString()) },
+                        onLihatRiwayatTransaksiClick = { onLihatRiwayatTransaksiClick(mahasiswa.idMhs.toString() )}
                     )
                 }
             }
@@ -116,7 +142,10 @@ fun DetailMhsStatus(
 @Composable
 fun ItemDetailMhs(
     modifier: Modifier = Modifier,
-    mahasiswa: Mahasiswa
+    mahasiswa: Mahasiswa,
+    nomorKmr : String,
+    onLihatRiwayatTransaksiClick: () -> Unit,
+    onTambahPembayaranClick: () -> Unit
 ) {
     Card(
         modifier = modifier,
@@ -194,6 +223,50 @@ fun ItemDetailMhs(
                     )
                 }
             )
+
+            Spacer(modifier = Modifier.height(12.dp))
+            Divider()
+
+            ComponentDetailMhs(
+                title = "Nomor Kamar",
+                content = nomorKmr,
+                icon = {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_door),
+                        contentDescription = "Ikon Email",
+                        tint = Color(0xFFFF6F61)
+                    )
+                }
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+            Button(
+                onClick = onLihatRiwayatTransaksiClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                shape = MaterialTheme.shapes.large,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF1DDBAF),
+                    contentColor = Color.White
+                )
+            ) {
+                Text(text = "Lihat Riwayat Transaksi", fontSize = 18.sp)
+            }
+            Spacer(modifier = Modifier.height(24.dp))
+            Button(
+                onClick = onTambahPembayaranClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                shape = MaterialTheme.shapes.large,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF1DDBAF),
+                    contentColor = Color.White
+                )
+            ) {
+                Text(text = "Tambah Pembayaran", fontSize = 18.sp)
+            }
         }
     }
 }
