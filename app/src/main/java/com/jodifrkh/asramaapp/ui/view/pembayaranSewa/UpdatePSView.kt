@@ -1,6 +1,7 @@
 package com.jodifrkh.asramaapp.ui.view.pembayaranSewa
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,7 +15,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -52,6 +52,7 @@ import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.InsertPSUiEvent
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.InsertPSUiState
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.UpdatePSViewModel
 import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import com.jodifrkh.asramaapp.ui.widget.DatePickerField
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -235,40 +236,15 @@ fun FormPSInputUpdate(
                 )
             }
         }
-        OutlinedTextField(
-            value = insertPSUiEvent.tgl,
-            onValueChange = {
-                onValueChange(insertPSUiEvent.copy(tgl = it))
+        DatePickerField(
+            label = "Tanggal Pembayaran",
+            placeholder = "dd-mm-yyyy",
+            selectedDate = insertPSUiEvent.tgl,
+            onDateChange = { newDate ->
+                onValueChange(insertPSUiEvent.copy(tgl = newDate))
             },
-            label = { Text("Tanggal") },
-            placeholder = { Text("yyyy-mm-dd") },
-            leadingIcon = {
-                Icon(
-                    Icons.Default.DateRange,
-                    contentDescription = "Ikon Tanggal",
-                    tint = Color(0xFFFF6F61),
-                    modifier = Modifier.size(28.dp)
-                )
-            },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            modifier = Modifier.fillMaxWidth(),
-            isError = errorPSState.tgl != null,
-            singleLine = true,
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = Color(0xFF1DDBAF),
-                unfocusedBorderColor = Color(0xFFB0BEC5),
-                errorBorderColor = Color.Red
-            )
+            errorMessage = errorPSState.tgl
         )
-
-        if (errorPSState.tgl != null) {
-            Text(
-                text = errorPSState.tgl,
-                color = Color.Red,
-                fontSize = 12.sp,
-                modifier = Modifier.padding(start = 8.dp, top = 2.dp)
-            )
-        }
 
         OutlinedTextField(
             value = insertPSUiEvent.jumlah,
@@ -278,10 +254,9 @@ fun FormPSInputUpdate(
             label = { Text("Jumlah Pembayaran") },
             placeholder = { Text("Masukkan Jumlah Pembayaran") },
             leadingIcon = {
-                Icon(
-                    painter = painterResource(R.drawable.ic_capacity),
+                Image(
+                    painter = painterResource(R.drawable.ic_money),
                     contentDescription = "Ikon Jumlah Pembayaran",
-                    tint = Color(0xFFFF6F61),
                     modifier = Modifier.size(28.dp)
                 )
             },
