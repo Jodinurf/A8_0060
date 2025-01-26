@@ -18,7 +18,10 @@ import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.DetailMhsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeMhsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.InsertMhsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.UpdateMhsViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.DetailPsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.HomePSViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.InsertPSViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.UpdatePSViewModel
 
 object PenyediaViewModel {
     val Factory = viewModelFactory {
@@ -83,6 +86,21 @@ object PenyediaViewModel {
         // ------------------Pembayaran Sewa------------------- //
         initializer {
             HomePSViewModel(AsramaApplication().container.pembayaranRepository)
+        }
+        initializer {
+            InsertPSViewModel(AsramaApplication().container.pembayaranRepository)
+        }
+        initializer {
+            DetailPsViewModel(
+                createSavedStateHandle(),
+                AsramaApplication().container.pembayaranRepository
+            )
+        }
+        initializer {
+            UpdatePSViewModel(
+                createSavedStateHandle(),
+                AsramaApplication().container.pembayaranRepository
+            )
         }
     }
 }
