@@ -1,6 +1,7 @@
 package com.jodifrkh.asramaapp.ui.view.kamar
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,9 +34,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jodifrkh.asramaapp.R
+import com.jodifrkh.asramaapp.data.ObjectMultipleChoice.optionsDropdownBangunan
 import com.jodifrkh.asramaapp.data.model.Kamar
 import com.jodifrkh.asramaapp.navigation.DestinasiDetailKmr
 import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeBgnViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.DetailKmrUiState
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.DetailKmrViewModel
 import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
@@ -46,8 +49,11 @@ import com.jodifrkh.asramaapp.ui.widget.OnLoading
 fun DetailKmrScreen(
     onClickBack: () -> Unit,
     onUpdateClick: () -> Unit,
-    viewModel: DetailKmrViewModel = viewModel(factory = PenyediaViewModel.Factory)
+    viewModel: DetailKmrViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    bangunanViewModel: HomeBgnViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
+    val bangunanList = optionsDropdownBangunan(bangunanViewModel)
+
     LaunchedEffect(Unit) {
         viewModel.getKamarById()
     }
@@ -79,6 +85,7 @@ fun DetailKmrScreen(
         DetailKmrStatus(
             modifier = Modifier.padding(innerPadding),
             detailKmrUiState = viewModel.kamarDetailState,
+            bangunanList = bangunanList,
             retryAction = { viewModel.getKamarById() }
         )
     }
@@ -88,13 +95,13 @@ fun DetailKmrScreen(
 fun DetailKmrStatus(
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
+    bangunanList: List<Pair<String, Int>>,
     detailKmrUiState: DetailKmrUiState
 ) {
     when (detailKmrUiState) {
         is DetailKmrUiState.Loading -> OnLoading(
             modifier = modifier.fillMaxSize()
         )
-
         is DetailKmrUiState.Success -> {
             if (detailKmrUiState.kamar.idKmr.toString().isEmpty()) {
                 Box(
@@ -109,9 +116,15 @@ fun DetailKmrStatus(
                     )
                 }
             } else {
+                val idBgnKamar = detailKmrUiState.kamar.idBgn
+
+                val namaBgn = bangunanList.find { it.second == idBgnKamar }?.first
+                    ?: "Bangunan tidak ditemukan"
+
                 AnimatedVisibility(visible = true) {
                     ItemDetailKmr(
                         kamar = detailKmrUiState.kamar,
+                        namaBgn = namaBgn,
                         modifier = modifier
                             .fillMaxWidth()
                             .padding(16.dp)
@@ -127,10 +140,12 @@ fun DetailKmrStatus(
     }
 }
 
+
 @Composable
 fun ItemDetailKmr(
     modifier: Modifier = Modifier,
-    kamar: Kamar
+    kamar: Kamar,
+    namaBgn: String,
 ) {
     Card(
         modifier = modifier,
@@ -151,6 +166,20 @@ fun ItemDetailKmr(
                 color = Color(0xFF1DDBAF),
                 modifier = Modifier.padding(bottom = 12.dp)
             )
+
+            ComponentDetailKmr(
+                title = "Lokasi",
+                content = namaBgn,
+                icon = {
+                    Image(
+                        painter = painterResource(R.drawable.ic_building),
+                        contentDescription = "Ikon Nomor kamar"
+                    )
+                }
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+            Divider()
 
             ComponentDetailKmr(
                 title = "Nomor kamar",
