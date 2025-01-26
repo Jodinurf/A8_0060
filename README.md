@@ -3,7 +3,7 @@
 ## On Start Homepage is Daftar Mahasiswa
 | **Bangunan Homepage** | **Kamar Homepage** | **Pembayaran Homepage** | **Mahasiswa Homepage** |
 | --- | --- | --- | --- |
-| <img src="https://github.com/user-attachments/assets/e72d0893-ed9d-41ca-b117-76bbe82496ef" width="200" height="150"> | <img src="https://github.com/user-attachments/assets/0b7e39e7-eaf4-46e9-b4ea-1ef411780ab6" width="200" height="150"> | <img src="https://github.com/user-attachments/assets/5b96599c-51f0-43c2-99ab-f24958fe8488" width="200" height="150"> | <img src="https://github.com/user-attachments/assets/71ff25db-13d4-4cc0-b74d-1b7787afdb35" width="200" height="150"> |
+| <img src="https://github.com/user-attachments/assets/e72d0893-ed9d-41ca-b117-76bbe82496ef" width="250" height="200"> | <img src="https://github.com/user-attachments/assets/0b7e39e7-eaf4-46e9-b4ea-1ef411780ab6" width="250" height="200"> | <img src="https://github.com/user-attachments/assets/5b96599c-51f0-43c2-99ab-f24958fe8488" width="250" height="200"> | <img src="https://github.com/user-attachments/assets/71ff25db-13d4-4cc0-b74d-1b7787afdb35" width="250" height="200"> |
 
 ## Insert Operation in Bangunan
 | **Bangunan Homepage before Insert** | **Insert Bangunan Page** | **Result Bangunan Homepage after Insert** |
@@ -46,4 +46,4 @@
 ## Delete Operation on Kamar
 | **Kamar Homepage before Delete** | **Validation when Deleting Data on Kamar Page** | **Result Kamar Homepage after Delete** |
 | --- | --- | --- |
-| <img src="https://github.com/user-attachments/assets/ee6ac41e-d9ac-4d4a-99a7-f6e9ec6566dd" width="300"> | <img src="https://github.com/user-attachments/assets/f19108ba-08f2-494e-b037-272f8306ba43" width="300"> | <img src="https://github.com/user-attachments/assets/7f2d03ae-6d0d-4b44-9ebf-d76dc2f5
+| <img src="https://github.com/user-attachments/assets/ee6ac41e-d9ac-4d4a-99a7-f6e9ec6566dd" width="300"> | <img src="https://github.com/user-attachments/assets/f19108ba-08f2-494e-b037-272f8306ba43" width="300"> | <img src="https://github.com/user-attachments/assets/7f2d03ae-6d0d-4b44-9ebf-d76dc2f5c6de" width="300"> |
