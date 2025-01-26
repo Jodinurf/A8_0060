@@ -24,6 +24,9 @@ interface PembayaranService {
     @GET("pembayaran/{idPs}")
     suspend fun getPembayaranById(@Path("idPs")idPs:Int): PembayaranDetailResponse
 
+    @GET("pembayaran/mahasiswa/{idMhs}")
+    suspend fun getPembayaranByIdMhs(@Path("idMhs")idMhs:Int) : PembayaranDetailResponse
+
     @POST("pembayaran/store")
     suspend fun insertPembayaran(@Body pembayaran: Pembayaran)
 
