@@ -11,6 +11,7 @@ interface PembayaranRepository{
     suspend fun updatePembayaran(idPs: Int, pembayaran: Pembayaran)
     suspend fun deletePembayaran(idPs: Int)
     suspend fun getPembayaranById(idPs: Int): Pembayaran
+    suspend fun getPembayaranByIdMhs(idMhs: Int): Pembayaran
 }
 
 class NetworkPembayaranRepository(
@@ -48,5 +49,9 @@ class NetworkPembayaranRepository(
 
     override suspend fun getPembayaranById(idPs: Int): Pembayaran {
         return PembayaranApiService.getPembayaranById(idPs).data
+    }
+
+    override suspend fun getPembayaranByIdMhs(idMhs: Int): Pembayaran {
+        return PembayaranApiService.getPembayaranByIdMhs(idMhs).data
     }
 }
