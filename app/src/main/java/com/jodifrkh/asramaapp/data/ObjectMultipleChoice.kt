@@ -40,6 +40,22 @@ object ObjectMultipleChoice {
     }
 
     @Composable
+    fun kamarChoice(
+        kamarHomeViewModel : HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory)
+    ) : List<Pair<String, Int>> {
+        val dataKamar by kamarHomeViewModel.kmrUIState.collectAsState()
+
+        return if (dataKamar is com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState.Success) {
+            val kamarList = (dataKamar as com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState.Success).kamar
+            kamarList
+                .map { it.nomorKmr to it.idKmr }
+        } else {
+            emptyList()
+        }
+    }
+
+
+    @Composable
     fun optionsDropDownKamar(
         kamarHomeViewModel : HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory)
     ) : List<Pair<String, Int>> {
@@ -47,7 +63,9 @@ object ObjectMultipleChoice {
 
         return if (dataKamar is com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState.Success) {
             val kamarList = (dataKamar as com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState.Success).kamar
-            kamarList.map { it.nomorKmr to it.idKmr }
+            kamarList
+                .filter { it.statusKmr == "Kosong" }
+                .map { it.nomorKmr to it.idKmr }
         } else {
             emptyList()
         }
