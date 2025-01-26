@@ -18,10 +18,10 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 
 interface AppContainer {
-    val mahasiswaRepository : MahasiswaRepository
-    val bangunanRepository : BangunanRepository
-    val kamarRepository : KamarRepository
-    val pembayaranRepository : PembayaranRepository
+    val mahasiswaRepository: MahasiswaRepository
+    val bangunanRepository: BangunanRepository
+    val kamarRepository: KamarRepository
+    val pembayaranRepository: PembayaranRepository
 }
 
 class AsramaContainer : AppContainer {
@@ -33,23 +33,23 @@ class AsramaContainer : AppContainer {
         .build()
 
 
-    private val mahasiswaService : MahasiswaService by lazy {
-        retrofit.create(MahasiswaService :: class.java)
+    private val mahasiswaService: MahasiswaService by lazy {
+        retrofit.create(MahasiswaService::class.java)
     }
 
-    private val bangunanService : BangunanService by lazy {
-        retrofit.create(BangunanService :: class.java)
+    private val bangunanService: BangunanService by lazy {
+        retrofit.create(BangunanService::class.java)
     }
 
-    private val kamarService : KamarService by lazy {
-        retrofit.create(KamarService :: class.java)
+    private val kamarService: KamarService by lazy {
+        retrofit.create(KamarService::class.java)
     }
 
-    private val pembayaranService : PembayaranService by lazy {
-        retrofit.create(PembayaranService :: class.java)
+    private val pembayaranService: PembayaranService by lazy {
+        retrofit.create(PembayaranService::class.java)
     }
 
-    override val mahasiswaRepository : MahasiswaRepository by lazy {
+    override val mahasiswaRepository: MahasiswaRepository by lazy {
         NetworkMahasiswaRepository(mahasiswaService)
     }
     override val bangunanRepository: BangunanRepository by lazy {
@@ -59,7 +59,7 @@ class AsramaContainer : AppContainer {
         NetworkKamarRepository(kamarService)
     }
 
-    override val pembayaranRepository : PembayaranRepository by lazy {
+    override val pembayaranRepository: PembayaranRepository by lazy {
         NetworkPembayaranRepository(pembayaranService)
     }
 }
