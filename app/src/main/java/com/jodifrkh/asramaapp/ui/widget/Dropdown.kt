@@ -140,7 +140,7 @@ fun DropdownKamar(
             ) {
                 kamarOptions.forEach { (nomorKamar, idKmr) ->
                     DropdownMenuItem(
-                        text = { Text(text = "Kamar Nomor : ${nomorKamar}") },
+                        text = { Text(text = nomorKamar) },
                         onClick = {
                             expanded = false
                             onSelectedKamarChanged(nomorKamar)
