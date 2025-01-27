@@ -41,14 +41,22 @@ object ObjectMultipleChoice {
 
     @Composable
     fun kamarChoice(
-        kamarHomeViewModel : HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory)
+        kamarHomeViewModel : HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory),
+        bangunanHomeViewModel: HomeBgnViewModel = viewModel(factory = PenyediaViewModel.Factory)
     ) : List<Pair<String, Int>> {
         val dataKamar by kamarHomeViewModel.kmrUIState.collectAsState()
+        val dataBangunan by bangunanHomeViewModel.bgnUIState.collectAsState()
 
-        return if (dataKamar is com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState.Success) {
+        return if (dataKamar is com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState.Success &&
+            dataBangunan is HomeUiState.Success) {
             val kamarList = (dataKamar as com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState.Success).kamar
+            val bangunanList = (dataBangunan as HomeUiState.Success).bangunan
+
             kamarList
-                .map { it.nomorKmr to it.idKmr }
+                .map { kamar ->
+                    val bangunan = bangunanList.find { it.idBgn == kamar.idBgn }
+                    "${kamar.nomorKmr} - ${bangunan?.namaBgn ?: "Bangunan tidak ditemukan"}" to kamar.idKmr
+                }
         } else {
             emptyList()
         }
@@ -57,15 +65,23 @@ object ObjectMultipleChoice {
 
     @Composable
     fun optionsDropDownKamar(
-        kamarHomeViewModel : HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory)
-    ) : List<Pair<String, Int>> {
+        kamarHomeViewModel: HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory),
+        bangunanHomeViewModel: HomeBgnViewModel = viewModel(factory = PenyediaViewModel.Factory)
+    ): List<Pair<String, Int>> {
         val dataKamar by kamarHomeViewModel.kmrUIState.collectAsState()
+        val dataBangunan by bangunanHomeViewModel.bgnUIState.collectAsState()
 
-        return if (dataKamar is com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState.Success) {
+        return if (dataKamar is com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState.Success &&
+            dataBangunan is HomeUiState.Success) {
             val kamarList = (dataKamar as com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState.Success).kamar
+            val bangunanList = (dataBangunan as HomeUiState.Success).bangunan
+
             kamarList
                 .filter { it.statusKmr == "Kosong" }
-                .map { it.nomorKmr to it.idKmr }
+                .map { kamar ->
+                    val bangunan = bangunanList.find { it.idBgn == kamar.idBgn }
+                    "Nomor Kamar: ${kamar.nomorKmr} - ${bangunan?.namaBgn ?: "Bangunan tidak ditemukan"}" to kamar.idKmr
+                }
         } else {
             emptyList()
         }
