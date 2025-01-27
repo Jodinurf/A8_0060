@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.jodifrkh.asramaapp.ui.view.SplashView
 import com.jodifrkh.asramaapp.ui.view.bangunan.DetailBgnScreen
 import com.jodifrkh.asramaapp.ui.view.bangunan.HomeBgnScreen
 import com.jodifrkh.asramaapp.ui.view.bangunan.InsertBgnView
@@ -30,8 +31,15 @@ fun MainControllerPage(
 ) {
     NavHost(
         navController = navController,
-        startDestination = DestinasiHomeMhs.route
+        startDestination = DestinasiHome.route
     ) {
+        composable(DestinasiHome.route) {
+            SplashView(
+                onMulaiClick = {
+                    navController.navigate(DestinasiHomeMhs.route)
+                }
+            )
+        }
         // ------------------Bangunan------------------- //
         composable(DestinasiHomeBgn.route) {
             HomeBgnScreen(
