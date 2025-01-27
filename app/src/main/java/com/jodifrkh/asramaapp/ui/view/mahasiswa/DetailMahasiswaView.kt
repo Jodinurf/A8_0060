@@ -253,21 +253,26 @@ fun ItemDetailMhs(
                     contentColor = Color.White
                 )
             ) {
-                Row(
+                Box(
                     modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
+                    contentAlignment = Alignment.Center
                 ) {
-                    Image(
-                        painter = painterResource(R.drawable.ic_eye),
-                        contentDescription = "Ikon Transaksi",
-                        modifier = Modifier
-                            .size(30.dp)
-                            .padding(end = 8.dp)
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Start,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.ic_eye),
+                            contentDescription = "Ikon Transaksi",
+                            modifier = Modifier
+                                .size(30.dp)
+                        )
+                    }
                     Text(
                         text = "Lihat Riwayat Transaksi",
-                        fontSize = 18.sp
+                        fontSize = 18.sp,
+                        modifier = Modifier.align(Alignment.Center)
                     )
                 }
             }
