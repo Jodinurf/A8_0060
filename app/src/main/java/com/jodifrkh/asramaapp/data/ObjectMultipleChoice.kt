@@ -88,10 +88,10 @@ object ObjectMultipleChoice {
 
     @Composable
     fun StatusKamarRadioButton(
+        modifier: Modifier = Modifier,
         statusKamar: String,
         onStatusChanged: (String) -> Unit,
         error: String? = null,
-        modifier: Modifier = Modifier
     ) {
         val focusedColor = Color(0xFF1DDBAF)
         val unfocusedColor = Color(0xFFB0BEC5)
@@ -148,10 +148,10 @@ object ObjectMultipleChoice {
 
     @Composable
     fun StatusBayarRadioButton(
+        modifier: Modifier = Modifier,
         statusBayar: String,
         onStatusChanged: (String) -> Unit,
         error: String? = null,
-        modifier: Modifier = Modifier
     ) {
         val focusedColor = Color(0xFF1DDBAF)
         val unfocusedColor = Color(0xFFB0BEC5)

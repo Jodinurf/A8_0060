@@ -34,11 +34,11 @@ import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun HomeBgnScreen(
+    viewModel: HomeBgnViewModel = viewModel(factory = PenyediaViewModel.Factory),
     navigateToItemEntry: () -> Unit,
     onDetailClick: (String) -> Unit = {},
     onEditClick: (String) -> Unit,
     onDropdownClick: (String) -> Unit,
-    viewModel: HomeBgnViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onBackClick: () -> Unit,
 ) {
     LaunchedEffect(Unit) {
@@ -56,7 +56,6 @@ fun HomeBgnScreen(
                 onBackClick = onBackClick,
                 refreshImageRes = R.drawable.icon_building,
                 onDropdownClick = onDropdownClick
-
             )
         },
         floatingActionButton = {
@@ -71,14 +70,12 @@ fun HomeBgnScreen(
                     tint = Color.White
                 )
             }
-        },
-        modifier = Modifier.fillMaxSize()
+        }
     ) { innerPadding ->
         HomeStatus(
             homeUiState = viewModel.bgnUIState,
             retryAction = { viewModel.getBgn() },
-            modifier = Modifier
-                .padding(innerPadding),
+            modifier = Modifier.padding(innerPadding),
             onDetailClick = onDetailClick,
             onDeleteClick = { bangunan ->
                 viewModel.deleteBgn(bangunan.idBgn)
@@ -113,7 +110,7 @@ fun HomeStatus(
             } else {
                 BgnLayout(
                     bangunan = state.bangunan,
-                    modifier = modifier.fillMaxWidth(),
+                    modifier = modifier,
                     onClick = onDetailClick,
                     onDeleteClick = onDeleteClick,
                     onEditClick = onEditClick
@@ -135,17 +132,20 @@ fun BgnLayout(
     LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(bangunan) { bangunan ->
-            BgnCard(
-                bangunan = bangunan,
-                modifier = Modifier.fillMaxWidth(),
-                onClick = { onClick(bangunan.idBgn.toString())},
-                onDeleteClick = onDeleteClick,
-                onEditClick = { onEditClick(bangunan.idBgn.toString())}
-            )
-        }
+        items(
+            items = bangunan,
+            itemContent = { bangunan ->
+                BgnCard(
+                    bangunan = bangunan,
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = { onClick(bangunan.idBgn.toString())},
+                    onDeleteClick = onDeleteClick,
+                    onEditClick = { onEditClick(bangunan.idBgn.toString())}
+                )
+            }
+        )
     }
 }
 
@@ -172,7 +172,7 @@ fun BgnCard(
 
     Card(
         modifier = modifier
-            .padding(vertical = 8.dp, horizontal = 16.dp)
+            .padding(vertical = 4.dp)
             .fillMaxWidth(),
         onClick = onClick,
         shape = MaterialTheme.shapes.medium,
@@ -196,7 +196,7 @@ fun BgnCard(
                     modifier = Modifier
                         .size(48.dp)
                         .clip(CircleShape)
-                        .border(2.dp, Color.Gray, CircleShape)
+                        .border(1.dp, Color.Gray, CircleShape)
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Text(

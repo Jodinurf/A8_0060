@@ -94,9 +94,7 @@ fun HomeStatus(
                     pembayaran = homeUiState.Pembayaran,
                     mhsList = mhsList,
                     modifier = modifier.fillMaxWidth(),
-                    onDetailClick = {
-                        onDetailClick(it.idPs.toString())
-                    },
+                    onDetailClick = onDetailClick,
                     onDeleteClick = {
                         onDeleteClick(it)
                     },
@@ -111,7 +109,7 @@ fun HomeStatus(
 fun PsLayout(
     pembayaran: List<Pembayaran>,
     modifier: Modifier = Modifier,
-    onDetailClick: (Pembayaran) -> Unit,
+    onDetailClick: (String) -> Unit,
     onDeleteClick: (Pembayaran) -> Unit = {},
     onEditClick: (String) -> Unit,
     mhsList: List<Pair<String, Int>>
@@ -119,32 +117,37 @@ fun PsLayout(
     LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(pembayaran) { pembayaran ->
-            val nama = mhsList.find { it.second == pembayaran.idMhs }?.first ?: "Mahasiswa tidak ditemukan"
-            PsCard(
-                pembayaran = pembayaran,
-                nama = nama,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { onDetailClick(pembayaran) },
-                onDeleteClick = {
-                    onDeleteClick(pembayaran)
-                },
-                onEditClick = {
-                    onEditClick(pembayaran.idPs.toString())
-                }
-            )
-        }
+        items(
+            items = pembayaran,
+            itemContent = { pembayaran ->
+                val nama = mhsList.find { it.second == pembayaran.idMhs }?.first ?: "Mahasiswa tidak ditemukan"
+                PsCard(
+                    pembayaran = pembayaran,
+                    nama = nama,
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    onClick = { onDetailClick(pembayaran.idPs.toString()) },
+                    onDeleteClick = {
+                        onDeleteClick(pembayaran)
+                    },
+                    onEditClick = {
+                        onEditClick(pembayaran.idPs.toString())
+                    }
+                )
+            }
+        )
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PsCard(
+    modifier: Modifier = Modifier,
     pembayaran: Pembayaran,
     nama: String,
-    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
     onDeleteClick: (Pembayaran) -> Unit = {},
     onEditClick: () -> Unit
 ) {
@@ -161,8 +164,9 @@ fun PsCard(
     }
 
     Card(
-        modifier = modifier.padding(vertical = 8.dp),
+        modifier = modifier.padding(vertical = 4.dp),
         shape = RoundedCornerShape(12.dp),
+        onClick = onClick,
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color(0xFFF5F5F5),
@@ -225,8 +229,7 @@ fun PsCard(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Divider dan Status
-            Divider(color = Color.Gray, thickness = 1.dp)
+            Divider(color = Color.Gray.copy(alpha = 0.5f))
             Text(
                 text = "Status: ${pembayaran.status}",
                 style = MaterialTheme.typography.bodyMedium,

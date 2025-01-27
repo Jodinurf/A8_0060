@@ -169,21 +169,24 @@ fun KmrLayout(
     LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(kamar) { kamar ->
-            val namaBgn = bangunanList.find { it.second == kamar.idBgn }?.first ?: "Bangunan Tidak Ditemukan"
-            KmrCard(
-                kamar = kamar,
-                namaBgn = namaBgn,
-                modifier = Modifier.fillMaxWidth(),
-                onClick = { onClick(kamar.idKmr.toString()) },
-                onDeleteClick = onDeleteClick,
-                onEditClick = {
-                    onEditClick(kamar.idKmr.toString())
-                }
-            )
-        }
+        items(
+            items = kamar,
+            itemContent = { kamar ->
+                val namaBgn = bangunanList.find { it.second == kamar.idBgn }?.first ?: "Bangunan Tidak Ditemukan"
+                KmrCard(
+                    kamar = kamar,
+                    namaBgn = namaBgn,
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = { onClick(kamar.idKmr.toString()) },
+                    onDeleteClick = onDeleteClick,
+                    onEditClick = {
+                        onEditClick(kamar.idKmr.toString())
+                    }
+                )
+            }
+        )
     }
 }
 
@@ -213,7 +216,7 @@ fun KmrCard(
     }
 
     Card(
-        modifier = modifier,
+        modifier = modifier.padding(vertical = 4.dp),
         onClick = onClick,
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(
@@ -231,12 +234,12 @@ fun KmrCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_building),
+                    painter = painterResource(id = R.drawable.ic_dorm),
                     contentDescription = null,
                     modifier = Modifier
                         .size(48.dp)
                         .clip(CircleShape)
-                        .border(2.dp, Color.Gray, CircleShape)
+                        .border(1.dp, Color.Gray, CircleShape)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
 

@@ -1,7 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.mahasiswa
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -138,32 +137,37 @@ fun MhsLayout(
     LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(mahasiswa) { mahasiswa ->
-            val nomorKmr = kamarList.find { it.second == mahasiswa.idKmr }?.first ?: "Kamar tidak ditemukan"
-            MhsCard(
-                mahasiswa = mahasiswa,
-                nomorKmr = nomorKmr,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { onDetailClick(mahasiswa) },
-                onDeleteClick = {
-                    onDeleteClick(mahasiswa)
-                },
-                onEditClick = {
-                    onEditClick(mahasiswa.idMhs.toString())
-                }
-            )
-        }
+        items(
+            items = mahasiswa,
+            itemContent = { mahasiswa ->
+                val nomorKmr = kamarList.find { it.second == mahasiswa.idKmr }?.first ?: "Kamar tidak ditemukan"
+                MhsCard(
+                    mahasiswa = mahasiswa,
+                    nomorKmr = nomorKmr,
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    onClick = { onDetailClick(mahasiswa) },
+                    onDeleteClick = {
+                        onDeleteClick(mahasiswa)
+                    },
+                    onEditClick = {
+                        onEditClick(mahasiswa.idMhs.toString())
+                    }
+                )
+            }
+        )
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MhsCard(
     mahasiswa: Mahasiswa,
     modifier: Modifier = Modifier,
     nomorKmr: String,
+    onClick: () -> Unit = {},
     onDeleteClick: (Mahasiswa) -> Unit = {},
     onEditClick: () -> Unit
 ) {
@@ -180,8 +184,9 @@ fun MhsCard(
     }
 
     Card(
-        modifier = modifier.padding(vertical = 8.dp),
+        modifier = modifier.padding(vertical = 4.dp),
         shape = RoundedCornerShape(12.dp),
+        onClick = onClick,
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color(0xFFF5F5F5),
@@ -189,7 +194,7 @@ fun MhsCard(
         )
     ) {
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         ) {
             Row(
                 modifier = Modifier
@@ -261,8 +266,7 @@ fun MhsCard(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Divider dan Status
-            Divider(color = Color.Gray, thickness = 1.dp)
+            Divider(color = Color.Gray.copy(alpha = 0.5f))
             Text(
                 text = "Nomor Kamar: $nomorKmr",
                 style = MaterialTheme.typography.bodyMedium,

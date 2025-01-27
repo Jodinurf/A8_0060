@@ -29,6 +29,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.text.style.TextOverflow
 import com.jodifrkh.asramaapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,6 +47,13 @@ fun CustomTopAppBar(
     var expandedMenu = remember { mutableStateOf(false) }
 
     CenterAlignedTopAppBar(
+        modifier = modifier
+            .fillMaxWidth(),
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+            containerColor = colorResource(R.color.primary),
+            titleContentColor = Color.White
+        ),
+        windowInsets = WindowInsets(0),
         title = {
             Text(
                 text = title,
@@ -54,10 +62,10 @@ fun CustomTopAppBar(
                     color = MaterialTheme.colorScheme.onPrimary
                 ),
                 textAlign = TextAlign.Center,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
             )
         },
-        modifier = modifier
-            .fillMaxWidth(),
         actions = {
             if (refreshImageRes != null) {
                 Image(
@@ -130,11 +138,6 @@ fun CustomTopAppBar(
                     )
                 }
             }
-        },
-        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = colorResource(R.color.primary),
-            titleContentColor = Color.White,
-        ),
-        windowInsets = WindowInsets(0) // Menghilangkan padding dari sistem
+        }
     )
 }
