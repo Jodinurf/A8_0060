@@ -37,8 +37,10 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jodifrkh.asramaapp.R
 import com.jodifrkh.asramaapp.data.ObjectMultipleChoice.StatusBayarRadioButton
+import com.jodifrkh.asramaapp.data.ObjectMultipleChoice.optionsDropdownMhs
 import com.jodifrkh.asramaapp.navigation.DestinasiInsertPS
 import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
+import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeMhsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.FormErrorPSState
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.InsertPSUiEvent
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.InsertPSUiState
@@ -65,6 +67,14 @@ fun InsertPSView(
                 viewModel.resetSnackBarPSMessage()
             }
         }
+    }
+
+    LaunchedEffect(Unit) {
+        viewModel.updateInsertPSState(
+            InsertPSUiEvent(
+                idMhs = idMahasiswa
+            )
+        )
     }
 
     Scaffold(
@@ -188,16 +198,18 @@ fun FormPSInput(
         OutlinedTextField(
             value = idMahasiswa,
             onValueChange = {
-                onValueChange(insertPSUiEvent.copy(idMhs = idMahasiswa))
+                onValueChange(insertPSUiEvent.copy(idMhs = it))
             },
-            label = { Text("ID Mahasiswa") },
+            label = { Text("Mahasiswa") },
             modifier = Modifier.fillMaxWidth(),
+            readOnly = true,
             singleLine = true,
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Color(0xFF1DDBAF),
                 unfocusedBorderColor = Color(0xFFB0BEC5)
             )
         )
+
 
         if (errorPSState.idMhs != null) {
             Text(
