@@ -14,11 +14,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -50,6 +52,7 @@ fun DetailPsScreen(
     onClickBack: () -> Unit,
     idPs: String? = null,
     idMhs: String? = null,
+    onUpdateClick: () -> Unit,
     viewModel: DetailPsViewModel = viewModel(factory = PenyediaViewModel.Factory),
     mhsViewModel : HomeMhsViewModel = viewModel(factory = PenyediaViewModel.Factory),
 ) {
@@ -76,6 +79,19 @@ fun DetailPsScreen(
                     }
                 },
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = onUpdateClick,
+                shape = MaterialTheme.shapes.large,
+                containerColor = Color(0xFF1DDBAF)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Edit,
+                    contentDescription = "Edit Pembayaran",
+                    tint = Color.White
+                )
+            }
         }
     ) { innerPadding ->
         DetailPsStatus(

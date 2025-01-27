@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Person
@@ -23,6 +24,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -55,6 +57,7 @@ fun DetailMhsScreen(
     onClickBack: () -> Unit,
     onTambahPembayaranClick: (String) -> Unit,
     onLihatRiwayatTransaksiClick: (String) -> Unit,
+    onUpdateClick: () -> Unit,
     viewModel: DetailMhsViewModel = viewModel(factory = PenyediaViewModel.Factory),
     kamarViewModel : HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory),
 ) {
@@ -73,6 +76,19 @@ fun DetailMhsScreen(
                 refreshImageRes = R.drawable.ic_student,
                 onRefresh = { viewModel.getMahasiswaById() }
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = onUpdateClick,
+                shape = MaterialTheme.shapes.large,
+                containerColor = Color(0xFF1DDBAF)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Edit,
+                    contentDescription = "Edit Mahasiswa",
+                    tint = Color.White
+                )
+            }
         }
     ) { innerPadding ->
         DetailMhsStatus(

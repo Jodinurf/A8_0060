@@ -283,6 +283,9 @@ fun MainControllerPage(
                     },
                     onLihatRiwayatTransaksiClick = { idMhs ->
                         navController.navigate("${DestinasiDetailPS.route}/mhs/$idMhs")
+                    },
+                    onUpdateClick = {
+                        navController.navigate("${DestinasiUpdateMhs.route}/$idMhs")
                     }
                 )
             }
@@ -374,6 +377,9 @@ fun MainControllerPage(
                                 inclusive = true
                             }
                         }
+                    },
+                    onUpdateClick = {
+                        navController.navigate("${DestinasiUpdatePS.route}/$idPs")
                     }
                 )
             } ?: run {
@@ -398,6 +404,9 @@ fun MainControllerPage(
                                 inclusive = true
                             }
                         }
+                    },
+                    onUpdateClick = {
+                        navController.navigate("${DestinasiUpdatePS.route}/$idMhs")
                     }
                 )
             } ?: run {
