@@ -1,7 +1,9 @@
 # <div align="center">Dokumentasi Proses pada AsramaApp</div>
 
 ## Aplikasi AsramaApp
- ![3007d2f1a66a764d0e63831b9509023f](https://github.com/user-attachments/assets/820c679d-a602-4d5e-b4a5-c3f596b2430f)
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/8677f654-b5ee-497a-a7d2-62de13c99119" width="500">
+</div>
 
 ###Halaman Utama adalah Halaman Daftar Mahasiswa
 | **Bangunan Homepage** | **Kamar Homepage** | **Pembayaran Homepage** | **Mahasiswa Homepage** |
