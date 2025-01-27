@@ -1,49 +1,62 @@
-# <div align="center">Screenshot A8 Process</div>
+#<div align="center">Dokumentasi Operasi Asrama App</div>
 
-## On Start Homepage is Daftar Mahasiswa
+## Halaman Homepage, Halaman Utama adalah Halaman Daftar Mahasiswa
 | **Bangunan Homepage** | **Kamar Homepage** | **Pembayaran Homepage** | **Mahasiswa Homepage** |
 | --- | --- | --- | --- |
-| <img src="https://github.com/user-attachments/assets/e72d0893-ed9d-41ca-b117-76bbe82496ef" width="250"> | <img src="https://github.com/user-attachments/assets/0b7e39e7-eaf4-46e9-b4ea-1ef411780ab6" width="250"> | <img src="https://github.com/user-attachments/assets/5b96599c-51f0-43c2-99ab-f24958fe8488" width="250"> | <img src="https://github.com/user-attachments/assets/71ff25db-13d4-4cc0-b74d-1b7787afdb35" width="250"> |
+| <img src="https://github.com/user-attachments/assets/e28ee951-6a1b-4dbd-9201-0156c75f619a" width="250"> | <img src="https://github.com/user-attachments/assets/127b3143-cfd1-4306-baad-959b697e0012" width="250"> | <img src="https://github.com/user-attachments/assets/179c4c8b-cc71-47ed-8569-ab289dfdaf76" width="250"> | <img src="https://github.com/user-attachments/assets/9efe3760-c315-4b9f-b6ac-68e8b25e18c9" width="250"> |
 
-## Insert Operation in Bangunan
-| **Bangunan Homepage before Insert** | **Insert Bangunan Page** | **Result Bangunan Homepage after Insert** |
+---
+## Operasi Bangunan
+### Proses Insert pada Bangunan
+| **Bangunan Homepage sebelum Insert** | **Insert Bangunan Page** | **Hasil Bangunan Homepage setelah Insert** |
 | --- | --- | --- |
-| <img src="https://github.com/user-attachments/assets/4714b489-6480-4e97-8343-bdf54ba1ee10" width="300"> | <img src="https://github.com/user-attachments/assets/9207b094-879c-40a0-a6ca-05619325dcbc" width="300"> | <img src="https://github.com/user-attachments/assets/c3cd77c6-56b6-4519-812f-2e864241d718" width="300"> |
-
-## Edit/Update Operation in Bangunan
-| **Bangunan Homepage before Update** | **Update Bangunan Page** | **Result Bangunan Homepage after Update** |
-| --- | --- | --- |
-| <img src="https://github.com/user-attachments/assets/eec8104e-4916-4f52-af04-a452abef16ee" width="300"> | <img src="https://github.com/user-attachments/assets/f4e9437b-ab92-48e5-992f-d02873e3031a" width="300"> | <img src="https://github.com/user-attachments/assets/fa4dfc75-eda8-4a85-808c-7f5d9acdbac4" width="300"> |
-
-## Showing Detail on Bangunan
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/33a024b2-83f1-430a-ae00-1ba64f40384b" width="500">
-</div>
-
-## Delete Operation on Bangunan
-| **Bangunan Homepage before Delete** | **Validation when Deleting Data on Bangunan Page** | **Result Bangunan Homepage after Delete** |
-| --- | --- | --- |
-| <img src="https://github.com/user-attachments/assets/45b5bd3d-b92f-4a21-89ed-1a0c4140dffc" width="300"> | <img src="https://github.com/user-attachments/assets/eb87e697-74d7-4f1a-b889-b2173e5023b2" width="300"> | <img src="https://github.com/user-attachments/assets/249125b0-5ec9-4379-8206-7ef19a376353" width="300"> |
+| <img src="https://github.com/user-attachments/assets/127b3143-cfd1-4306-baad-959b697e0012" width="300"> | <img src="https://github.com/user-attachments/assets/b5eba983-4950-4e90-bb13-46781ecb625d" width="300"> | <img src="https://github.com/user-attachments/assets/e474320b-6775-4cec-a355-0b1442da20a9" width="300"> |
 
 ---
 
-## Insert Operation in Kamar
-| **Kamar Homepage before Insert** | **Insert Kamar Page** | **Result Kamar Homepage after Insert** |
+### Operasi Edit/Update pada Bangunan
+| **Bangunan Homepage sebelum Update** | **Update Bangunan Page** | **Hasil Bangunan Homepage setelah Update** |
 | --- | --- | --- |
-| <img src="https://github.com/user-attachments/assets/62aacbfa-f4f8-4edb-8d10-825d86b65196" width="300"> | <img src="https://github.com/user-attachments/assets/f603fff7-3c57-41a0-995f-77c05938cc37" width="300"> | <img src="https://github.com/user-attachments/assets/846d189e-5eae-450b-aa59-7cf47b4d43c0" width="300"> |
+| <img src="https://github.com/user-attachments/assets/e474320b-6775-4cec-a355-0b1442da20a9" width="300"> | <img src="https://github.com/user-attachments/assets/d47f174e-61b5-460d-a161-214ada03fff9" width="300"> | <img src="https://github.com/user-attachments/assets/fbb47768-fc76-46ab-befb-e3c70afe551a" width="300"> |
 
-## Edit/Update Operation in Kamar
-| **Kamar Homepage before Update** | **Update Kamar Page** | **Result Kamar Homepage after Update** |
-| --- | --- | --- |
-| <img src="https://github.com/user-attachments/assets/62aacbfa-f4f8-4edb-8d10-825d86b65196" width="300"> | <img src="https://github.com/user-attachments/assets/8af4230a-a508-4aa6-83ef-0ff99d247282" width="300"> | <img src="https://github.com/user-attachments/assets/ee6ac41e-d9ac-4d4a-99a7-f6e9ec6566dd" width="300"> |
+---
 
-
-## Showing Detail on Kamar
+### Detail pada Bangunan
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/746f3344-20ea-44bf-be79-df95af8d6f54" width="500">
+  <img src="https://github.com/user-attachments/assets/6e0f3adc-7d52-4329-9231-a96dd2de8147" width="500">
 </div>
 
-## Delete Operation on Kamar
-| **Kamar Homepage before Delete** | **Validation when Deleting Data on Kamar Page** | **Result Kamar Homepage after Delete** |
+---
+
+### Operasi Delete pada Bangunan
+| **Bangunan Homepage sebelum Delete** | **Validasi ketika Deleting Data pada Bangunan Page** | **Hasil Bangunan Homepage setelah Delete** |
 | --- | --- | --- |
-| <img src="https://github.com/user-attachments/assets/ee6ac41e-d9ac-4d4a-99a7-f6e9ec6566dd" width="300"> | <img src="https://github.com/user-attachments/assets/f19108ba-08f2-494e-b037-272f8306ba43" width="300"> | <img src="https://github.com/user-attachments/assets/7f2d03ae-6d0d-4b44-9ebf-d76dc2f5c6de" width="300"> |
+| <img src="https://github.com/user-attachments/assets/fbb47768-fc76-46ab-befb-e3c70afe551a" width="300"> | <img src="https://github.com/user-attachments/assets/1ba3a301-e861-461b-b0de-bdb6b51c388a" width="300"> | <img src="https://github.com/user-attachments/assets/f5cc40d1-ee9a-4dec-a426-75d6666c5827" width="300"> |
+
+---
+## Operasi Kamar
+### Operasi Insert pada Kamar
+| **Kamar Homepage sebelum Insert** | **Insert Kamar Page** | **Hasil Kamar Homepage setelah Insert** |
+| --- | --- | --- |
+| <img src="https://github.com/user-attachments/assets/179c4c8b-cc71-47ed-8569-ab289dfdaf76" width="300"> | <img src="https://github.com/user-attachments/assets/771d8234-d1c6-40ea-bbf5-c89fbb16f330" width="300"> | <img src="https://github.com/user-attachments/assets/4b3dd346-6afc-46e6-98da-70d448a8a263" width="300"> |
+
+---
+
+### Operasi Edit/Update pada Kamar
+| **Kamar Homepage sebelum Update** | **Update Kamar Page** | **Hasil Kamar Homepage setelah Update** |
+| --- | --- | --- |
+| <img src="https://github.com/user-attachments/assets/4b3dd346-6afc-46e6-98da-70d448a8a263" width="300"> | <img src="https://github.com/user-attachments/assets/175fb2ea-1826-4a09-9649-e2e21d714d18" width="300"> | <img src="https://github.com/user-attachments/assets/0c62662e-e89b-46ab-b2e7-9b30facb76c4" width="300"> |
+
+---
+
+### Detail pada Kamar
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/13b8f5ff-42c8-4c75-90ec-abfdfeae6ed6" width="500">
+</div>
+
+---
+
+### Operasi Delete pada Kamar
+| **Kamar Homepage sebelum Delete** | **Validasi ketika Deleting Data pada Kamar Page** | **Hasil Kamar Homepage setelah Delete** |
+| --- | --- | --- |
+| <img src="https://github.com/user-attachments/assets/0c62662e-e89b-46ab-b2e7-9b30facb76c4" width="300"> | <img src="https://github.com/user-attachments/assets/c4b19972-ef7c-4f42-8159-b56b3ae9e68f" width="300"> | <img src="https://github.com/user-attachments/assets/32839792-f5db-4a06-bdc8-bf3a534eef06" width="300"> |
