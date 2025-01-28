@@ -2,6 +2,7 @@ package com.jodifrkh.asramaapp.ui.widget
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -52,6 +53,7 @@ fun TopAppBar(
             containerColor = colorResource(R.color.primary),
             titleContentColor = Color.White
         ),
+        windowInsets = WindowInsets(0.dp),
         title = {
             Text(
                 text = title,
