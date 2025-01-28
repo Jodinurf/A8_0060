@@ -91,7 +91,7 @@ Halman Utama adalah Halaman Daftar Mahasiswa, gunakan Dropdown pada Icon Menu di
 ---
 
 ### Proses Tambah Pembayaran pada Button di detail Mahasiswa
-| **Detail Mahasiswa** | **Tambah Pembayaran** | **Hasil setelah Tambah Pembayaran pada Mahasiswa melalui Button Lihat Riwayat Transaksi** |
+| **Detail Mahasiswa** | **Tambah Pembayaran** | **Hasil setelah Tambah Pembayaran pada Mahasiswa** |
 | --- | --- | --- |
 | <img src="https://github.com/user-attachments/assets/3a53928f-7750-4635-b8f2-a91c4468447a" width="300"> | <img src="https://github.com/user-attachments/assets/4bccae24-66eb-405e-87a9-ab80a24f8fe0" width="300"> | <img src="https://github.com/user-attachments/assets/0c67927f-3b02-4888-91b6-7c8c393ecb7e" width="300"> |
 
