@@ -1,5 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.bangunan
 
+import CustomTopAppBar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -27,9 +28,9 @@ import com.jodifrkh.asramaapp.navigation.DestinasiHomeBgn
 import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeBgnViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeUiState
-import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import com.jodifrkh.asramaapp.ui.widget.OnError
 import com.jodifrkh.asramaapp.ui.widget.OnLoading
+import com.jodifrkh.asramaapp.ui.widget.BottomAppBar
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
@@ -38,7 +39,7 @@ fun HomeBgnScreen(
     navigateToItemEntry: () -> Unit,
     onDetailClick: (String) -> Unit = {},
     onEditClick: (String) -> Unit,
-    onDropdownClick: (String) -> Unit,
+    onClick: (String) -> Unit,
     onBackClick: () -> Unit,
 ) {
     LaunchedEffect(Unit) {
@@ -47,15 +48,14 @@ fun HomeBgnScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
+            CustomTopAppBar(
                 title = DestinasiHomeBgn.titleRes,
                 canNavigateBack = false,
                 onRefresh = {
                     viewModel.getBgn()
                 },
                 onBackClick = onBackClick,
-                refreshImageRes = R.drawable.icon_building,
-                onDropdownClick = onDropdownClick
+                refreshImageRes = R.drawable.ic_papapas
             )
         },
         floatingActionButton = {
@@ -70,7 +70,12 @@ fun HomeBgnScreen(
                     tint = Color.White
                 )
             }
-        }
+        },
+        bottomBar = {
+            BottomAppBar(
+                onClick = onClick
+            )
+        },
     ) { innerPadding ->
         HomeStatus(
             homeUiState = viewModel.bgnUIState,

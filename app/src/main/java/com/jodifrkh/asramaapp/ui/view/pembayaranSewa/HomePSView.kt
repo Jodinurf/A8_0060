@@ -1,5 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.pembayaranSewa
 
+import CustomTopAppBar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -26,7 +27,7 @@ import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeMhsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.HomePSViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.HomeUiState
-import com.jodifrkh.asramaapp.ui.widget.TopAppBar
+import com.jodifrkh.asramaapp.ui.widget.BottomAppBar
 import com.jodifrkh.asramaapp.ui.widget.OnError
 import com.jodifrkh.asramaapp.ui.widget.OnLoading
 
@@ -35,7 +36,7 @@ fun HomePsScreen(
     onDetailClick: (String) -> Unit = {},
     onBackClick: () -> Unit,
     onEditClick: (String) -> Unit,
-    onDropdownClick: (String) -> Unit,
+    onClick: (String) -> Unit,
     viewModel: HomePSViewModel = viewModel(factory = PenyediaViewModel.Factory),
     mhsViewModel: HomeMhsViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
@@ -46,15 +47,19 @@ fun HomePsScreen(
     }
     Scaffold(
         topBar = {
-            TopAppBar(
+            CustomTopAppBar(
                 title = DestinasiHomePS.titleRes,
                 canNavigateBack = false,
                 onRefresh = { viewModel.getPs() },
                 onBackClick = onBackClick,
-                refreshImageRes = R.drawable.ic_payment,
-                onDropdownClick = onDropdownClick
+                refreshImageRes = R.drawable.ic_papapas,
             )
-        }
+        },
+        bottomBar = {
+            BottomAppBar(
+                onClick = onClick,
+            )
+        },
     ) { innerPadding ->
         HomeStatus(
             homeUiState = viewModel.psUIState,

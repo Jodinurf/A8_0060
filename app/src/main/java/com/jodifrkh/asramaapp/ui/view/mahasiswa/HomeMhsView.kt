@@ -1,5 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.mahasiswa
 
+import CustomTopAppBar
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -29,7 +30,7 @@ import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeKmrViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeMhsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeUiState
-import com.jodifrkh.asramaapp.ui.widget.TopAppBar
+import com.jodifrkh.asramaapp.ui.widget.BottomAppBar
 import com.jodifrkh.asramaapp.ui.widget.OnError
 import com.jodifrkh.asramaapp.ui.widget.OnLoading
 import kotlinx.coroutines.flow.StateFlow
@@ -40,7 +41,7 @@ fun HomeMhsScreen(
     onDetailClick: (String) -> Unit = {},
     onBackClick: () -> Unit,
     onEditClick: (String) -> Unit,
-    onDropdownClick: (String) -> Unit,
+    onClick: (String) -> Unit,
     viewModel: HomeMhsViewModel = viewModel(factory = PenyediaViewModel.Factory),
     kamarViewModel : HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
@@ -51,13 +52,12 @@ fun HomeMhsScreen(
     }
     Scaffold(
         topBar = {
-            TopAppBar(
+            CustomTopAppBar(
                 title = DestinasiHomeMhs.titleRes,
                 canNavigateBack = false,
                 onRefresh = { viewModel.getMhs() },
                 onBackClick = onBackClick,
-                refreshImageRes = R.drawable.ic_student,
-                onDropdownClick = onDropdownClick
+                refreshImageRes = R.drawable.ic_papapas
             )
         },
         floatingActionButton = {
@@ -72,6 +72,11 @@ fun HomeMhsScreen(
                     tint = Color.White
                 )
             }
+        },
+        bottomBar = {
+           BottomAppBar (
+               onClick = onClick
+           )
         },
     ) { innerPadding ->
         HomeStatus(

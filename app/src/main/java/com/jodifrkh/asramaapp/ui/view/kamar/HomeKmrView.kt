@@ -1,5 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.kamar
 
+import CustomTopAppBar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -56,7 +57,7 @@ import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeBgnViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeKmrViewModel
-import com.jodifrkh.asramaapp.ui.widget.TopAppBar
+import com.jodifrkh.asramaapp.ui.widget.BottomAppBar
 import com.jodifrkh.asramaapp.ui.widget.OnError
 import com.jodifrkh.asramaapp.ui.widget.OnLoading
 import kotlinx.coroutines.flow.StateFlow
@@ -67,7 +68,7 @@ fun HomeKmrScreen(
     onDetailClick: (String) -> Unit = {},
     onBackClick: () -> Unit,
     onEditClick: (String) -> Unit,
-    onDropdownClick: (String) -> Unit,
+    onClick: (String) -> Unit,
     viewModel: HomeKmrViewModel = viewModel(factory = PenyediaViewModel.Factory),
     bangunanViewModel: HomeBgnViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
@@ -78,13 +79,12 @@ fun HomeKmrScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
+            CustomTopAppBar(
                 title = DestinasiHomeKmr.titleRes,
                 canNavigateBack = false,
                 onRefresh = { viewModel.getKmr() },
                 onBackClick = onBackClick,
-                refreshImageRes = R.drawable.ic_bedroom,
-                onDropdownClick = onDropdownClick
+                refreshImageRes = R.drawable.ic_papapas
             )
         },
         floatingActionButton = {
@@ -99,6 +99,11 @@ fun HomeKmrScreen(
                     tint = Color.White
                 )
             }
+        },
+        bottomBar = {
+            BottomAppBar (
+                onClick = onClick
+            )
         },
         modifier = Modifier.fillMaxSize()
     ) { innerPadding ->
