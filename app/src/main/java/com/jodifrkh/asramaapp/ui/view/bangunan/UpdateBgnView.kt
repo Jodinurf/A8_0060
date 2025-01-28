@@ -1,5 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.bangunan
 
+import CustomTopAppBar
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,7 +25,6 @@ import com.jodifrkh.asramaapp.R
 import com.jodifrkh.asramaapp.navigation.DestinasiUpdateBgn
 import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.UpdateBgnViewModel
-import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import kotlinx.coroutines.delay
 
 @Composable
@@ -45,7 +45,7 @@ fun UpdateBgnScreen(
 
     Scaffold (
         topBar = {
-            TopAppBar(
+            CustomTopAppBar(
                 title = DestinasiUpdateBgn.titleRes,
                 canNavigateBack = true,
                 onBackClick = onClickBack,

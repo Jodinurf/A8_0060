@@ -1,5 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.kamar
 
+import CustomTopAppBar
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -54,7 +55,6 @@ import com.jodifrkh.asramaapp.ui.viewModel.kamar.FormErrorKmrState
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.InsertKmrUiEvent
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.InsertKmrUiState
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.UpdateKmrViewModel
-import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -78,7 +78,7 @@ fun UpdateKmrScreen(
 
     Scaffold (
         topBar = {
-            TopAppBar(
+            CustomTopAppBar(
                 title = DestinasiUpdateKmr.titleRes,
                 canNavigateBack = true,
                 onBackClick = onClickBack,

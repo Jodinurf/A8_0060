@@ -1,5 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.kamar
 
+import CustomTopAppBar
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -41,7 +42,6 @@ import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeBgnViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.DetailKmrUiState
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.DetailKmrViewModel
-import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import com.jodifrkh.asramaapp.ui.widget.OnError
 import com.jodifrkh.asramaapp.ui.widget.OnLoading
 
@@ -60,7 +60,7 @@ fun DetailKmrScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
+            CustomTopAppBar(
                 title = DestinasiDetailKmr.titleRes,
                 canNavigateBack = true,
                 onBackClick = onClickBack,

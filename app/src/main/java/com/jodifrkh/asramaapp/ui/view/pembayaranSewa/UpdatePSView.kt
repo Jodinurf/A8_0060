@@ -1,5 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.pembayaranSewa
 
+import CustomTopAppBar
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -51,7 +52,6 @@ import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.FormErrorPSState
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.InsertPSUiEvent
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.InsertPSUiState
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.UpdatePSViewModel
-import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import com.jodifrkh.asramaapp.ui.widget.DatePickerField
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -76,7 +76,7 @@ fun UpdatePsScreen(
 
     Scaffold (
         topBar = {
-            TopAppBar(
+            CustomTopAppBar(
                 title = DestinasiUpdatePS.titleRes,
                 canNavigateBack = true,
                 onBackClick = onClickBack,

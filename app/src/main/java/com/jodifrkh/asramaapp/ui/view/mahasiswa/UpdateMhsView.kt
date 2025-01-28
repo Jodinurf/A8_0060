@@ -1,5 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.mahasiswa
 
+import CustomTopAppBar
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -53,7 +54,6 @@ import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.FormErrorMhsState
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.InsertMhsUiEvent
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.InsertMhsUiState
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.UpdateMhsViewModel
-import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -77,7 +77,7 @@ fun UpdateMhsScreen(
 
     Scaffold (
         topBar = {
-            TopAppBar(
+            CustomTopAppBar(
                 title = DestinasiUpdateMhs.titleRes,
                 canNavigateBack = true,
                 onBackClick = onClickBack,

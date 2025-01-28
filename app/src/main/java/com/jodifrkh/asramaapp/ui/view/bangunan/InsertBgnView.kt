@@ -1,5 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.bangunan
 
+import CustomTopAppBar
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -45,7 +46,6 @@ import com.jodifrkh.asramaapp.ui.viewModel.bangunan.FormErrorBgnState
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.InsertBgnUiEvent
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.InsertBgnUiState
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.InsertBgnViewModel
-import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import kotlinx.coroutines.launch
 
 @Composable
@@ -69,7 +69,7 @@ fun InsertBgnView(
 
     Scaffold(
         topBar = {
-            TopAppBar(
+            CustomTopAppBar(
                 title = DestinasiInsertBgn.titleRes,
                 canNavigateBack = true,
                 onBackClick = onBackClick,

@@ -1,5 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.pembayaranSewa
 
+import CustomTopAppBar
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -43,7 +44,6 @@ import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeMhsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.DetailPsUiState
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.DetailPsViewModel
-import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import com.jodifrkh.asramaapp.ui.widget.OnError
 import com.jodifrkh.asramaapp.ui.widget.OnLoading
 
@@ -67,7 +67,7 @@ fun DetailPsScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
+            CustomTopAppBar(
                 title = DestinasiDetailPS.titleRes,
                 canNavigateBack = true,
                 onBackClick = onClickBack,

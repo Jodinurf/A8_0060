@@ -1,5 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.mahasiswa
 
+import CustomTopAppBar
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -50,7 +51,6 @@ import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.FormErrorMhsState
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.InsertMhsUiEvent
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.InsertMhsUiState
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.InsertMhsViewModel
-import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import com.jodifrkh.asramaapp.ui.widget.DropdownKamar
 import kotlinx.coroutines.launch
 
@@ -75,7 +75,7 @@ fun InsertMhsView(
 
     Scaffold(
         topBar = {
-            TopAppBar(
+            CustomTopAppBar(
                 title = DestinasiInsertMhs.titleRes,
                 canNavigateBack = true,
                 onBackClick = onBackClick,
