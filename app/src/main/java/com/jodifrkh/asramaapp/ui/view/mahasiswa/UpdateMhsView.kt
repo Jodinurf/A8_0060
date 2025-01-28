@@ -53,7 +53,7 @@ import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.FormErrorMhsState
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.InsertMhsUiEvent
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.InsertMhsUiState
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.UpdateMhsViewModel
-import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -77,7 +77,7 @@ fun UpdateMhsScreen(
 
     Scaffold (
         topBar = {
-            CustomTopAppBar(
+            TopAppBar(
                 title = DestinasiUpdateMhs.titleRes,
                 canNavigateBack = true,
                 onBackClick = onClickBack,

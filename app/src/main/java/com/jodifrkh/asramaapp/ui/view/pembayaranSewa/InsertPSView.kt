@@ -37,15 +37,13 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jodifrkh.asramaapp.R
 import com.jodifrkh.asramaapp.data.ObjectMultipleChoice.StatusBayarRadioButton
-import com.jodifrkh.asramaapp.data.ObjectMultipleChoice.optionsDropdownMhs
 import com.jodifrkh.asramaapp.navigation.DestinasiInsertPS
 import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
-import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeMhsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.FormErrorPSState
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.InsertPSUiEvent
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.InsertPSUiState
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.InsertPSViewModel
-import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import com.jodifrkh.asramaapp.ui.widget.DatePickerField
 import kotlinx.coroutines.launch
 
@@ -79,7 +77,7 @@ fun InsertPSView(
 
     Scaffold(
         topBar = {
-            CustomTopAppBar(
+            TopAppBar(
                 title = DestinasiInsertPS.titleRes,
                 canNavigateBack = true,
                 onBackClick = onBackClick,

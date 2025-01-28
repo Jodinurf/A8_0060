@@ -27,7 +27,7 @@ import com.jodifrkh.asramaapp.navigation.DestinasiHomeBgn
 import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeBgnViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeUiState
-import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import com.jodifrkh.asramaapp.ui.widget.OnError
 import com.jodifrkh.asramaapp.ui.widget.OnLoading
 import kotlinx.coroutines.flow.StateFlow
@@ -47,7 +47,7 @@ fun HomeBgnScreen(
 
     Scaffold(
         topBar = {
-            CustomTopAppBar(
+            TopAppBar(
                 title = DestinasiHomeBgn.titleRes,
                 canNavigateBack = false,
                 onRefresh = {

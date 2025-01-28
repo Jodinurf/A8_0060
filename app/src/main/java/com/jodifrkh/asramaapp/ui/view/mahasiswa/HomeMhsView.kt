@@ -29,7 +29,7 @@ import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeKmrViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeMhsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeUiState
-import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import com.jodifrkh.asramaapp.ui.widget.OnError
 import com.jodifrkh.asramaapp.ui.widget.OnLoading
 import kotlinx.coroutines.flow.StateFlow
@@ -51,7 +51,7 @@ fun HomeMhsScreen(
     }
     Scaffold(
         topBar = {
-            CustomTopAppBar(
+            TopAppBar(
                 title = DestinasiHomeMhs.titleRes,
                 canNavigateBack = false,
                 onRefresh = { viewModel.getMhs() },

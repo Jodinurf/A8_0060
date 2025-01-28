@@ -56,7 +56,7 @@ import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.HomeBgnViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeUiState
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.HomeKmrViewModel
-import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import com.jodifrkh.asramaapp.ui.widget.OnError
 import com.jodifrkh.asramaapp.ui.widget.OnLoading
 import kotlinx.coroutines.flow.StateFlow
@@ -78,7 +78,7 @@ fun HomeKmrScreen(
 
     Scaffold(
         topBar = {
-            CustomTopAppBar(
+            TopAppBar(
                 title = DestinasiHomeKmr.titleRes,
                 canNavigateBack = false,
                 onRefresh = { viewModel.getKmr() },

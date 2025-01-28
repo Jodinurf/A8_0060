@@ -48,7 +48,7 @@ import com.jodifrkh.asramaapp.ui.viewModel.kamar.FormErrorKmrState
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.InsertKmrUiEvent
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.InsertKmrUiState
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.InsertKmrViewModel
-import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import com.jodifrkh.asramaapp.ui.widget.DropdownBangunan
 import kotlinx.coroutines.launch
 
@@ -73,7 +73,7 @@ fun InsertKmrView(
 
     Scaffold(
         topBar = {
-            CustomTopAppBar(
+            TopAppBar(
                 title = DestinasiInsertKmr.titleRes,
                 canNavigateBack = true,
                 onBackClick = onBackClick,

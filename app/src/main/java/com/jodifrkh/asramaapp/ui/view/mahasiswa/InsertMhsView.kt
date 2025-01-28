@@ -50,7 +50,7 @@ import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.FormErrorMhsState
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.InsertMhsUiEvent
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.InsertMhsUiState
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.InsertMhsViewModel
-import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import com.jodifrkh.asramaapp.ui.widget.DropdownKamar
 import kotlinx.coroutines.launch
 
@@ -75,7 +75,7 @@ fun InsertMhsView(
 
     Scaffold(
         topBar = {
-            CustomTopAppBar(
+            TopAppBar(
                 title = DestinasiInsertMhs.titleRes,
                 canNavigateBack = true,
                 onBackClick = onBackClick,
@@ -350,7 +350,7 @@ fun FormMhsInput(
             isReadOnly = isReadOnly
         )
 
-        if (errorMhsState.idKmr!= null) {
+        if (errorMhsState.idKmr != null) {
             Text(
                 text = errorMhsState.idKmr,
                 color = Color.Red,

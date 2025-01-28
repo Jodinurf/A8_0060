@@ -15,8 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -56,8 +54,7 @@ import com.jodifrkh.asramaapp.ui.viewModel.kamar.FormErrorKmrState
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.InsertKmrUiEvent
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.InsertKmrUiState
 import com.jodifrkh.asramaapp.ui.viewModel.kamar.UpdateKmrViewModel
-import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
-import com.jodifrkh.asramaapp.ui.widget.DropdownBangunan
+import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -81,7 +78,7 @@ fun UpdateKmrScreen(
 
     Scaffold (
         topBar = {
-            CustomTopAppBar(
+            TopAppBar(
                 title = DestinasiUpdateKmr.titleRes,
                 canNavigateBack = true,
                 onBackClick = onClickBack,

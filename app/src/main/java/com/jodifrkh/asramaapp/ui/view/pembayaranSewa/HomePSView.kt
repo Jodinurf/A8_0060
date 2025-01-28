@@ -1,7 +1,6 @@
 package com.jodifrkh.asramaapp.ui.view.pembayaranSewa
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -27,7 +26,7 @@ import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.mahasiswa.HomeMhsViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.HomePSViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.pembayaranSewa.HomeUiState
-import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import com.jodifrkh.asramaapp.ui.widget.OnError
 import com.jodifrkh.asramaapp.ui.widget.OnLoading
 
@@ -47,7 +46,7 @@ fun HomePsScreen(
     }
     Scaffold(
         topBar = {
-            CustomTopAppBar(
+            TopAppBar(
                 title = DestinasiHomePS.titleRes,
                 canNavigateBack = false,
                 onRefresh = { viewModel.getPs() },

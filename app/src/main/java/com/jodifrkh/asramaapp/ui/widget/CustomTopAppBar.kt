@@ -2,7 +2,6 @@ package com.jodifrkh.asramaapp.ui.widget
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -34,7 +33,7 @@ import com.jodifrkh.asramaapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CustomTopAppBar(
+fun TopAppBar(
     title: String,
     modifier: Modifier = Modifier,
     canNavigateBack: Boolean,
@@ -53,7 +52,6 @@ fun CustomTopAppBar(
             containerColor = colorResource(R.color.primary),
             titleContentColor = Color.White
         ),
-        windowInsets = WindowInsets(0),
         title = {
             Text(
                 text = title,

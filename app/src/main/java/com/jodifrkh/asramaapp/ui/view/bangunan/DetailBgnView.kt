@@ -39,7 +39,7 @@ import com.jodifrkh.asramaapp.navigation.DestinasiDetailBgn
 import com.jodifrkh.asramaapp.ui.viewModel.PenyediaViewModel
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.DetailBgnUiState
 import com.jodifrkh.asramaapp.ui.viewModel.bangunan.DetailBgnViewModel
-import com.jodifrkh.asramaapp.ui.widget.CustomTopAppBar
+import com.jodifrkh.asramaapp.ui.widget.TopAppBar
 import com.jodifrkh.asramaapp.ui.widget.OnError
 import com.jodifrkh.asramaapp.ui.widget.OnLoading
 
@@ -55,7 +55,7 @@ fun DetailBgnScreen(
 
     Scaffold(
         topBar = {
-            CustomTopAppBar(
+            TopAppBar(
                 title = DestinasiDetailBgn.titleRes,
                 canNavigateBack = true,
                 onBackClick = onClickBack,
