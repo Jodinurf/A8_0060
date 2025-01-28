@@ -12,7 +12,7 @@ Halman Utama adalah Halaman Daftar Mahasiswa, gunakan Dropdown pada Icon Menu di
 | <img src="https://github.com/user-attachments/assets/e28ee951-6a1b-4dbd-9201-0156c75f619a" width="250"> | <img src="https://github.com/user-attachments/assets/127b3143-cfd1-4306-baad-959b697e0012" width="250"> | <img src="https://github.com/user-attachments/assets/179c4c8b-cc71-47ed-8569-ab289dfdaf76" width="250"> | <img src="https://github.com/user-attachments/assets/9efe3760-c315-4b9f-b6ac-68e8b25e18c9" width="250"> |
 
 ---
-## Operasi Bangunan
+## Operasi pada Bangunan
 ### Proses Insert pada Bangunan
 | **Bangunan Homepage sebelum Insert** | **Insert Bangunan Page** | **Hasil Bangunan Homepage setelah Insert** |
 | --- | --- | --- |
@@ -40,7 +40,7 @@ Halman Utama adalah Halaman Daftar Mahasiswa, gunakan Dropdown pada Icon Menu di
 | <img src="https://github.com/user-attachments/assets/fbb47768-fc76-46ab-befb-e3c70afe551a" width="300"> | <img src="https://github.com/user-attachments/assets/1ba3a301-e861-461b-b0de-bdb6b51c388a" width="300"> | <img src="https://github.com/user-attachments/assets/f5cc40d1-ee9a-4dec-a426-75d6666c5827" width="300"> |
 
 ---
-## Operasi Kamar
+## Operasi pada Kamar
 ### Operasi Insert pada Kamar
 | **Kamar Homepage sebelum Insert** | **Insert Kamar Page** | **Hasil Kamar Homepage setelah Insert** |
 | --- | --- | --- |
@@ -66,3 +66,55 @@ Halman Utama adalah Halaman Daftar Mahasiswa, gunakan Dropdown pada Icon Menu di
 | **Kamar Homepage sebelum Delete** | **Validasi ketika Deleting Data pada Kamar Page** | **Hasil Kamar Homepage setelah Delete** |
 | --- | --- | --- |
 | <img src="https://github.com/user-attachments/assets/0c62662e-e89b-46ab-b2e7-9b30facb76c4" width="300"> | <img src="https://github.com/user-attachments/assets/c4b19972-ef7c-4f42-8159-b56b3ae9e68f" width="300"> | <img src="https://github.com/user-attachments/assets/32839792-f5db-4a06-bdc8-bf3a534eef06" width="300"> |
+
+## Operasi pada Mahasiswa
+
+### Operasi Insert pada Kamar
+| **Mahasiswa Homepage sebelum Insert** | **Insert Mahasiswa Page** | **Hasil Mahasiswa Homepage setelah Insert** |
+| --- | --- | --- |
+| <img src="https://github.com/user-attachments/assets/0dc136b4-3e1b-44d5-882c-fdd934c83714" width="300"> | <img src="https://github.com/user-attachments/assets/11671e3a-91ce-49d3-a3e0-8b4e80e96cf8" width="300"> | <img src="https://github.com/user-attachments/assets/086892f5-f104-4199-8465-29ae1fbf2a93" width="300"> |
+
+---
+
+### Operasi Edit/Update pada Mahasiswa
+| **Mahasiswa Homepage sebelum Update** | **Update Mahasiswa Page** | **Hasil Mahasiswa Homepage setelah Update** |
+| --- | --- | --- |
+| <img src="https://github.com/user-attachments/assets/086892f5-f104-4199-8465-29ae1fbf2a93" width="300"> | <img src="https://github.com/user-attachments/assets/f803d03b-298f-4fbd-bd3e-99a97ba344c6" width="300"> | <img src="https://github.com/user-attachments/assets/f61f64f5-8dfd-4051-8434-667c25b3434e" width="300"> |
+
+---
+
+### Detail pada Mahasiswa
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/dc55df52-90f9-426f-a9cd-8e29b8444faa" width="500">
+</div>
+
+---
+
+### Proses Tambah Pembayaran pada Button di detail Mahasiswa
+| **Detail Mahasiswa** | **Tambah Pembayaran** | **Hasil setelah Tambah Pembayaran pada Mahasiswa** |
+| --- | --- | --- |
+| <img src="https://github.com/user-attachments/assets/3a53928f-7750-4635-b8f2-a91c4468447a" width="300"> | <img src="https://github.com/user-attachments/assets/4bccae24-66eb-405e-87a9-ab80a24f8fe0" width="300"> | <img src="https://github.com/user-attachments/assets/0c67927f-3b02-4888-91b6-7c8c393ecb7e" width="300"> |
+
+---
+
+### Operasi Delete pada Kamar
+| **Mahasiswa Homepage sebelum Delete** | **Validasi ketika Deleting Data pada Mahasiswa Page** | **Hasil Mahasiswa Homepage setelah Delete** |
+| --- | --- | --- |
+| <img src="https://github.com/user-attachments/assets/f61f64f5-8dfd-4051-8434-667c25b3434e" width="300"> | <img src="https://github.com/user-attachments/assets/8d22f0e2-b96f-484f-b192-dbfd37661758" width="300"> | <img src="https://github.com/user-attachments/assets/133d5ba1-acc4-42f1-aebc-90a626b82cf6" width="300"> |
+
+---
+
+## Operasi pada Pembayaran Sewa
+pembayaran hanya bisa ditambahkan melalui halaman detail mahasiswa, dan telah dijelaskan melalui operasi tambah pembayaran di detail mahasiswa sebelumnya
+
+### Operasi Edit/Update pada Pembayaran Sewa
+| **Pembayaran Sewa Homepage sebelum Update** | **Update Pembayaran Sewa Page** | **Hasil Pembayaran Sewa Homepage setelah Update** |
+| --- | --- | --- |
+| <img src="https://github.com/user-attachments/assets/5730cae4-6178-4157-b366-cfdd525e4844" width="300"> | <img src="https://github.com/user-attachments/assets/982ac5c6-4fb9-4fea-87a7-4edf0988583d" width="300"> | <img src="https://github.com/user-attachments/assets/5334907e-644e-45ed-98b1-fb64ecd59f08" width="300"> |
+
+---
+
+### Operasi Delete pada Kamar
+| **Pembayaran Sewa Homepage sebelum Delete** | **Validasi ketika Deleting Data pada Pembayaran Sewa Page** | **Hasil Pembayaran Sewa Homepage setelah Delete** |
+| --- | --- | --- |
+| <img src="https://github.com/user-attachments/assets/5334907e-644e-45ed-98b1-fb64ecd59f08" width="300"> | <img src="https://github.com/user-attachments/assets/d68642f6-5d56-43da-a6ae-3f08a11096e6" width="300"> | <img src="https://github.com/user-attachments/assets/1030653c-0643-4d3a-834a-35672f32e6eb" width="300"> |
