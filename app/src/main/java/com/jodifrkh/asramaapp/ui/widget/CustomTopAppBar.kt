@@ -1,11 +1,14 @@
-package com.jodifrkh.asramaapp.ui.widget
-
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -15,36 +18,35 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.text.style.TextOverflow
 import com.jodifrkh.asramaapp.R
+import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopAppBar(
+fun CustomTopAppBar(
     title: String,
     modifier: Modifier = Modifier,
     canNavigateBack: Boolean,
     onBackClick: () -> Unit = { },
     onRefresh: () -> Unit = { },
-    onDropdownClick: (String) -> Unit = {},
     refreshImageRes: Int? = null,
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
-    var expandedMenu = remember { mutableStateOf(false) }
 
     CenterAlignedTopAppBar(
         modifier = modifier
@@ -68,16 +70,33 @@ fun TopAppBar(
         },
         actions = {
             if (refreshImageRes != null) {
-                Image(
-                    painter = painterResource(id = refreshImageRes),
-                    contentDescription = "Refresh Image",
+                var isClicked by remember { mutableStateOf(false) }
+
+                LaunchedEffect(isClicked) {
+                    if (isClicked) {
+                        delay(300)
+                        isClicked = false
+                    }
+                }
+
+                Box(
                     modifier = Modifier
                         .padding(end = 14.dp)
-                        .size(40.dp)
-                        .clickable { onRefresh() }
-                )
+                        .size(42.dp)
+                        .clip(CircleShape)
+                        .background(if (isClicked) Color.Gray else Color.Transparent)
+                        .clickable {
+                            isClicked = true
+                            onRefresh()
+                        },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = refreshImageRes),
+                        contentDescription = "Refresh Image",
+                    )
+                }
             }
-
         },
         scrollBehavior = scrollBehavior,
         navigationIcon = {
@@ -87,54 +106,6 @@ fun TopAppBar(
                         imageVector = Icons.Filled.ArrowBack,
                         contentDescription = "Navigate Back",
                         tint = Color.White
-                    )
-                }
-            }
-            else {
-                IconButton(onClick = { expandedMenu.value = true }) {
-                    Icon(
-                        imageVector = Icons.Filled.Menu,
-                        contentDescription = "Menu",
-                        tint = Color.White
-                    )
-                }
-                DropdownMenu(
-                    expanded = expandedMenu.value,
-                    onDismissRequest = { expandedMenu.value = false }
-                ) {
-                    DropdownMenuItem(
-                        onClick = {
-                            onDropdownClick("Bangunan")
-                            expandedMenu.value = false
-                        },
-                        text = {
-                            Text("Bangunan")
-                        })
-                    DropdownMenuItem(
-                        onClick = {
-                            onDropdownClick("Kamar")
-                            expandedMenu.value = false
-                        },
-                        text = {
-                            Text("Kamar")
-                        }
-                    )
-                    DropdownMenuItem(
-                        onClick = {
-                            expandedMenu.value = false
-                            onDropdownClick("Mahasiswa")
-                        },
-                        text = {
-                            Text("Mahasiswa")
-                        }
-                    )
-                    DropdownMenuItem(onClick = {
-                        expandedMenu.value = false
-                        onDropdownClick("Pembayaran Sewa")
-                    },
-                        text = {
-                            Text("Pembayaran Sewa")
-                        }
                     )
                 }
             }
