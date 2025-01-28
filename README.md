@@ -126,7 +126,7 @@ Hapus data mahasiswa dengan **ikon tempat sampah** di halaman daftar mahasiswa.
 ## Operasi pada Pembayaran Sewa
 pembayaran hanya bisa ditambahkan melalui halaman detail mahasiswa, dan telah dijelaskan melalui operasi tambah pembayaran di detail mahasiswa sebelumnya
 
-### **2. Mengedit atau Memperbarui Pembayaran Sewa**
+### **1. Mengedit atau Memperbarui Pembayaran Sewa**
 Edit data mahasiswa dengan **ikon edit** di halaman daftar atau tombol pada halaman detail Pembayaran Sewa.
 | **Sebelum Perubahan** | **Form Edit Mahasiswa** | **Setelah Perubahan** |
 | --- | --- | --- |
@@ -134,7 +134,7 @@ Edit data mahasiswa dengan **ikon edit** di halaman daftar atau tombol pada hala
 
 ---
 
-### **3. Menghapus Pembayaran Sewa**
+### **2. Menghapus Pembayaran Sewa**
 Hapus data Pembayaran Sewa dengan **ikon tempat sampah** di halaman daftar Pembayaran Sewa.
 | **Sebelum Penghapusan** | **Validasi Penghapusan** | **Setelah Penghapusan** |
 | --- | --- | --- |
