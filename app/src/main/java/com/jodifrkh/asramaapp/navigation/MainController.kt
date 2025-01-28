@@ -53,7 +53,7 @@ fun MainControllerPage(
                 onEditClick = { idBgn ->
                     navController.navigate("${DestinasiUpdateBgn.route}/$idBgn")
                 },
-                onDropdownClick = { item ->
+                onClick = { item ->
                     when (item) {
                         "Bangunan" -> navController.navigate(DestinasiHomeBgn.route) {
                             popUpTo(DestinasiHomeBgn.route) {
@@ -70,7 +70,7 @@ fun MainControllerPage(
                                 inclusive = true
                             }
                         }
-                        "Pembayaran Sewa" -> navController.navigate(DestinasiHomePS.route) {
+                        "Pembayaran" -> navController.navigate(DestinasiHomePS.route) {
                             popUpTo(DestinasiHomePS.route) {
                                 inclusive = true
                             }
@@ -140,7 +140,7 @@ fun MainControllerPage(
                 onEditClick = { idKmr ->
                     navController.navigate("${DestinasiUpdateKmr.route}/$idKmr")
                 },
-                onDropdownClick = { item ->
+                onClick = { item ->
                     when (item) {
                         "Bangunan" -> navController.navigate(DestinasiHomeBgn.route) {
                             popUpTo(DestinasiHomeBgn.route) {
@@ -157,7 +157,7 @@ fun MainControllerPage(
                                 inclusive = true
                             }
                         }
-                        "Pembayaran Sewa" -> navController.navigate(DestinasiHomePS.route) {
+                        "Pembayaran" -> navController.navigate(DestinasiHomePS.route) {
                             popUpTo(DestinasiHomePS.route) {
                                 inclusive = true
                             }
@@ -227,7 +227,7 @@ fun MainControllerPage(
                 onEditClick = {idMhs ->
                     navController.navigate("${DestinasiUpdateMhs.route}/$idMhs")
                 },
-                onDropdownClick = { item ->
+                onClick = { item ->
                     when (item) {
                         "Bangunan" -> navController.navigate(DestinasiHomeBgn.route) {
                             popUpTo(DestinasiHomeBgn.route) {
@@ -244,7 +244,7 @@ fun MainControllerPage(
                                 inclusive = true
                             }
                         }
-                        "Pembayaran Sewa" -> navController.navigate(DestinasiHomePS.route) {
+                        "Pembayaran" -> navController.navigate(DestinasiHomePS.route) {
                             popUpTo(DestinasiHomePS.route) {
                                 inclusive = true
                             }
@@ -315,7 +315,7 @@ fun MainControllerPage(
                     navController.navigate("${DestinasiUpdatePS.route}/$idPs")
                 },
                 onBackClick = {navController.popBackStack()},
-                onDropdownClick = { item ->
+                onClick = { item ->
                     when (item) {
                         "Bangunan" -> navController.navigate(DestinasiHomeBgn.route) {
                             popUpTo(DestinasiHomeBgn.route) {
@@ -332,7 +332,7 @@ fun MainControllerPage(
                                 inclusive = true
                             }
                         }
-                        "Pembayaran Sewa" -> navController.navigate(DestinasiHomePS.route) {
+                        "Pembayaran" -> navController.navigate(DestinasiHomePS.route) {
                             popUpTo(DestinasiHomePS.route) {
                                 inclusive = true
                             }
