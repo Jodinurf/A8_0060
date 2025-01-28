@@ -79,10 +79,7 @@ Halman Utama adalah Halaman Daftar Mahasiswa, gunakan Dropdown pada Icon Menu di
 ### Operasi Edit/Update pada Mahasiswa
 | **Mahasiswa Homepage sebelum Update** | **Update Mahasiswa Page** | **Hasil Mahasiswa Homepage setelah Update** |
 | --- | --- | --- |
-| <img src="https://github.com/user-attachments/assets/4b3dd346-6afc-46e6-98da-70d448a8a263" width="300"> | <img src="https://github.com/user-attachments/assets/175fb2ea-1826-4a09-9649-e2e21d714d18" width="300"> | <img src="https://github.com/user-attachments/assets/0c62662e-e89b-46ab-b2e7-9b30facb76c4" width="300"> |
-![2c  SebelumUpdateMhs](https://github.com/user-attachments/assets/086892f5-f104-4199-8465-29ae1fbf2a93)
-![2d  EditMahasiswa](https://github.com/user-attachments/assets/f803d03b-298f-4fbd-bd3e-99a97ba344c6)
-![2e  HasilEditMhs](https://github.com/user-attachments/assets/f61f64f5-8dfd-4051-8434-667c25b3434e)
+| <img src="https://github.com/user-attachments/assets/086892f5-f104-4199-8465-29ae1fbf2a93" width="300"> | <img src="https://github.com/user-attachments/assets/f803d03b-298f-4fbd-bd3e-99a97ba344c6" width="300"> | <img src="https://github.com/user-attachments/assets/f61f64f5-8dfd-4051-8434-667c25b3434e" width="300"> |
 
 ---
 
