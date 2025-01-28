@@ -7,7 +7,7 @@
 
 ### Halaman
 Halman Utama adalah Halaman Daftar Mahasiswa, gunakan Dropdown pada Icon Menu di Top App Bar untuk berpindah halaman
-| **Bangunan Homepage** | **Kamar Homepage** | **Pembayaran Homepage** | **Mahasiswa Homepage** |
+| **Bangunan Homepage** | **Kamar Homepage** | **Mahasiswa Homepage** | **Pembayaran Homepage** |
 | --- | --- | --- | --- |
 | <img src="https://github.com/user-attachments/assets/7197f28a-360b-44f8-8a43-d49b77c42849" width="250"> | <img src="https://github.com/user-attachments/assets/40cf5d04-6fc2-44a2-823e-3ae8e82389e3" width="250"> | <img src="https://github.com/user-attachments/assets/c6b91ff7-9751-40e3-a510-ccbc0cc1b338" width="250"> | <img src="https://github.com/user-attachments/assets/0e92490b-0ca2-4bb6-bc3f-19497afe71cf" width="250"> |
 
