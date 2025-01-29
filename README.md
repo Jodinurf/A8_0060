@@ -1,7 +1,7 @@
 # <div align="center">Dokumentasi Proses pada AsramaApp</div>
 
 ### **Backend Proses**
-Proses backend dapat ditemukan di branch `server_side`. Anda dapat mengakses kode lengkapnya melalui [link berikut](https://github.com/Jodinurf/A8_0060/tree/server_side).
+Proses backend dapat ditemukan di branch `server_side`. Dapat diakses kode lengkapnya melalui [link berikut](https://github.com/Jodinurf/A8_0060/tree/server_side).
 
 ## Aplikasi AsramaApp
 <div align="center">
@@ -127,15 +127,15 @@ Hapus data mahasiswa dengan **ikon tempat sampah** di halaman daftar mahasiswa.
 pembayaran hanya bisa ditambahkan melalui halaman detail mahasiswa, dan telah dijelaskan melalui operasi tambah pembayaran di detail mahasiswa sebelumnya
 
 ### **1. Mengedit atau Memperbarui Pembayaran Sewa**
-Edit data mahasiswa dengan **ikon edit** di halaman daftar atau tombol pada halaman detail Pembayaran Sewa.
+Edit data Pembayaran Sewa pada mahasiswa dengan **ikon edit** di halaman daftar atau tombol pada halaman detail Pembayaran Sewa.
 | **Sebelum Perubahan** | **Form Edit Mahasiswa** | **Setelah Perubahan** |
 | --- | --- | --- |
-| <img src="https://github.com/user-attachments/assets/ef2e3241-bd32-4013-a81c-9d6aa692e981" width="300"> | <img src="https://github.com/user-attachments/assets/982ac5c6-4fb9-4fea-87a7-4edf0988583d" width="300"> | <img src="https://github.com/user-attachments/assets/793d9530-5f5a-481f-aca5-0000c3822cda" width="300"> |
+| <img src="https://github.com/user-attachments/assets/ef2e3241-bd32-4013-a81c-9d6aa692e981" width="300"> | <img src="https://github.com/user-attachments/assets/372f965f-2fdb-43ca-932d-310272f81835" width="300"> | <img src="https://github.com/user-attachments/assets/793d9530-5f5a-481f-aca5-0000c3822cda" width="300"> |
 
 ---
 
 ### **2. Menghapus Pembayaran Sewa**
-Hapus data Pembayaran Sewa dengan **ikon tempat sampah** di halaman daftar Pembayaran Sewa.
+Hapus data Pembayaran Sewa pada mahasiswa dengan **ikon tempat sampah** di halaman daftar Pembayaran Sewa.
 | **Sebelum Penghapusan** | **Validasi Penghapusan** | **Setelah Penghapusan** |
 | --- | --- | --- |
 | <img src="https://github.com/user-attachments/assets/793d9530-5f5a-481f-aca5-0000c3822cda" width="300"> | <img src="https://github.com/user-attachments/assets/0559dced-9a0e-40cc-a33d-2f269e6ec18e" width="300"> | <img src="https://github.com/user-attachments/assets/f1df7b2e-f276-4d60-bedd-e0bafa3ba84f" width="300"> |
