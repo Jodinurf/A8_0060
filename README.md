@@ -128,7 +128,7 @@ pembayaran hanya bisa ditambahkan melalui halaman detail mahasiswa, dan telah di
 
 ### **1. Mengedit atau Memperbarui Pembayaran Sewa**
 Edit data Pembayaran Sewa pada mahasiswa dengan **ikon edit** di halaman daftar atau tombol pada halaman detail Pembayaran Sewa.
-| **Sebelum Perubahan** | **Form Edit Mahasiswa** | **Setelah Perubahan** |
+| **Sebelum Perubahan** | **Form Edit Pembayaran** | **Setelah Perubahan** |
 | --- | --- | --- |
 | <img src="https://github.com/user-attachments/assets/ef2e3241-bd32-4013-a81c-9d6aa692e981" width="300"> | <img src="https://github.com/user-attachments/assets/372f965f-2fdb-43ca-932d-310272f81835" width="300"> | <img src="https://github.com/user-attachments/assets/793d9530-5f5a-481f-aca5-0000c3822cda" width="300"> |
 
